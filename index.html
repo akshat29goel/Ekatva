@@ -1,0 +1,1170 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ekatva - Oneness Within</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;1,300&family=Lato:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        paper: {
+                            light: '#F9F6F0',
+                            dark: '#121212'
+                        },
+                        sandalwood: '#D4A373',
+                        saffron: '#E07A5F',
+                        gold: '#D4AF37',
+                        ink: {
+                            light: '#2C2C2C',
+                            dark: '#E5E5E5'
+                        },
+                        muted: '#7A7A7A'
+                    },
+                    fontFamily: {
+                        serif: ['Merriweather', 'serif'],
+                        sans: ['Lato', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Feather Icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+
+    <style>
+        :root {
+            --texture-opacity: 0.02;
+        }
+
+        .dark {
+            --texture-opacity: 0.04;
+        }
+
+        body {
+            background-color: #F9F6F0;
+            color: #2C2C2C;
+            overflow-x: hidden;
+            position: relative;
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+
+        /* Celestial Background Canvas */
+        #celestial-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* ============================================ */
+        /* === FIXED BACKGROUND EKATVA LOGO =========== */
+        /* ============================================ */
+        #bg-ekatva-logo {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+            pointer-events: none;
+            font-family: 'Merriweather', serif;
+            font-size: clamp(120px, 18vw, 280px);
+            font-weight: 900;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: rgba(212, 163, 115, 0.08);
+            -webkit-text-stroke: 2px rgba(212, 163, 115, 0.15);
+            text-shadow:
+                0 0 40px rgba(212, 163, 115, 0.12),
+                0 0 80px rgba(212, 163, 115, 0.08),
+                0 0 120px rgba(212, 163, 115, 0.05),
+                0 0 200px rgba(212, 163, 115, 0.03);
+            white-space: nowrap;
+            user-select: none;
+            animation: ekatva-glow 6s ease-in-out infinite;
+            will-change: opacity;
+        }
+        .dark #bg-ekatva-logo {
+            color: rgba(212, 163, 115, 0.06);
+            -webkit-text-stroke: 2px rgba(212, 163, 115, 0.12);
+            text-shadow:
+                0 0 60px rgba(212, 163, 115, 0.18),
+                0 0 120px rgba(212, 163, 115, 0.12),
+                0 0 200px rgba(212, 163, 115, 0.08),
+                0 0 300px rgba(212, 163, 115, 0.04);
+        }
+        @keyframes ekatva-glow {
+            0%, 100% { opacity: 0.85; }
+            50% { opacity: 1; }
+        }
+
+        /* Ensure all content sits above the canvas + logo */
+        nav, header, section, footer, .section-divider {
+            position: relative;
+            z-index: 1;
+        }
+        
+        a.fixed {
+            z-index: 50;
+        }
+
+        /* Subtle texture overlay */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: var(--texture-opacity);
+            background-image: url("https://www.transparenttextures.com/patterns/felt.png");
+            transition: opacity 0.5s ease;
+        }
+        
+        .noise-bg {
+            position: relative;
+        }
+        .noise-bg::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image: url("https://www.transparenttextures.com/patterns/paper-fibers.png");
+            opacity: 0.02;
+            pointer-events: none;
+        }
+
+        .hero-bg {
+            background: radial-gradient(circle at center, rgba(212,163,115,0.1) 0%, transparent 75%);
+            transition: background 0.5s ease;
+        }
+        .dark .hero-bg {
+            background: radial-gradient(circle at center, rgba(212,163,115,0.06) 0%, transparent 75%);
+        }
+
+        .verse-content {
+            transition: opacity 0.5s ease-in-out;
+        }
+        .verse-fade-out {
+            opacity: 0;
+        }
+
+        .ring-expand {
+            transform: scale(1.6);
+            opacity: 0.1;
+        }
+
+        /* ============================================ */
+        /* === APPLE LIQUID GLASS PANELS ============== */
+        /* ============================================ */
+        .liquid-glass {
+            background: rgba(255, 255, 255, 0.18);
+            backdrop-filter: blur(40px) saturate(1.8) brightness(1.1);
+            -webkit-backdrop-filter: blur(40px) saturate(1.8) brightness(1.1);
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            border-radius: 2rem;
+            box-shadow:
+                0 8px 32px rgba(0, 0, 0, 0.06),
+                inset 0 1px 0 rgba(255, 255, 255, 0.5),
+                inset 0 -1px 0 rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .liquid-glass::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 50%;
+            background: linear-gradient(180deg, rgba(255,255,255,0.25) 0%, transparent 100%);
+            pointer-events: none;
+            border-radius: 2rem 2rem 0 0;
+        }
+        .liquid-glass:hover {
+            background: rgba(255, 255, 255, 0.25);
+            border-color: rgba(255, 255, 255, 0.5);
+            box-shadow:
+                0 12px 48px rgba(0, 0, 0, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 0.6),
+                inset 0 -1px 0 rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .dark .liquid-glass {
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(40px) saturate(1.5) brightness(0.9);
+            -webkit-backdrop-filter: blur(40px) saturate(1.5) brightness(0.9);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow:
+                0 8px 32px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.08),
+                inset 0 -1px 0 rgba(255, 255, 255, 0.02);
+        }
+        .dark .liquid-glass::before {
+            background: linear-gradient(180deg, rgba(255,255,255,0.06) 0%, transparent 100%);
+        }
+        .dark .liquid-glass:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.18);
+            box-shadow:
+                0 12px 48px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.12),
+                inset 0 -1px 0 rgba(255, 255, 255, 0.04);
+        }
+
+        /* Glass card inherits liquid-glass */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.18);
+            backdrop-filter: blur(40px) saturate(1.8) brightness(1.1);
+            -webkit-backdrop-filter: blur(40px) saturate(1.8) brightness(1.1);
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow:
+                0 8px 32px rgba(0, 0, 0, 0.06),
+                inset 0 1px 0 rgba(255, 255, 255, 0.5),
+                inset 0 -1px 0 rgba(255, 255, 255, 0.1);
+        }
+        .glass-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 50%;
+            background: linear-gradient(180deg, rgba(255,255,255,0.2) 0%, transparent 100%);
+            pointer-events: none;
+            border-radius: 2rem 2rem 0 0;
+        }
+        .dark .glass-card {
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(40px) saturate(1.5) brightness(0.9);
+            -webkit-backdrop-filter: blur(40px) saturate(1.5) brightness(0.9);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow:
+                0 8px 32px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.08);
+        }
+        .dark .glass-card::before {
+            background: linear-gradient(180deg, rgba(255,255,255,0.04) 0%, transparent 100%);
+        }
+
+        /* Liquid glass nav */
+        .liquid-glass-nav {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(50px) saturate(2) brightness(1.05);
+            -webkit-backdrop-filter: blur(50px) saturate(2) brightness(1.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+        }
+        .dark .liquid-glass-nav {
+            background: rgba(18, 18, 18, 0.4);
+            backdrop-filter: blur(50px) saturate(1.5) brightness(0.85);
+            -webkit-backdrop-filter: blur(50px) saturate(1.5) brightness(0.85);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Liquid glass sections - near fully transparent */
+        .liquid-glass-section {
+            background: rgba(255, 255, 255, 0.01);
+            backdrop-filter: blur(6px) saturate(1.1);
+            -webkit-backdrop-filter: blur(6px) saturate(1.1);
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+        }
+        .dark .liquid-glass-section {
+            background: rgba(18, 18, 18, 0.04);
+            backdrop-filter: blur(6px) saturate(1.05);
+            -webkit-backdrop-filter: blur(6px) saturate(1.05);
+            border-top: 1px solid rgba(255, 255, 255, 0.02);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.01);
+        }
+
+        /* Hero logo SVG styles */
+        .hero-logo-circle {
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 0.8;
+            opacity: 0.15;
+        }
+        .hero-logo-text {
+            font-family: 'Merriweather', serif;
+            font-size: 8px;
+            letter-spacing: 4px;
+            fill: currentColor;
+            opacity: 0.2;
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #F9F6F0; }
+        .dark ::-webkit-scrollbar-track { background: #121212; }
+        ::-webkit-scrollbar-thumb { background: #D4A373; border-radius: 10px; }
+
+        input[type=range] {
+            accent-color: #D4A373;
+        }
+
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.3), transparent);
+        }
+        .dark .section-divider {
+            background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.06), transparent);
+        }
+
+        .photo-card {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .photo-card:hover {
+            transform: translateY(-8px) scale(1.01);
+        }
+    </style>
+</head>
+<body class="font-sans antialiased bg-paper-light dark:bg-paper-dark text-ink-light dark:text-ink-dark selection:bg-sandalwood selection:text-white">
+
+    <!-- Celestial Background Canvas -->
+    <canvas id="celestial-canvas"></canvas>
+
+    <!-- Fixed Background EKATVA Logo -->
+    <div id="bg-ekatva-logo">EKATVA</div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 py-4 px-8 flex justify-between items-center liquid-glass-nav transition-all duration-500">
+        <a href="#home" class="font-serif text-2xl tracking-widest text-ink-light dark:text-ink-dark hover:text-sandalwood transition-colors">EKATVA</a>
+        <div class="hidden md:flex items-center space-x-8 text-sm tracking-widest uppercase">
+            <a href="#mirror" class="hover:text-sandalwood transition-colors">Mirror</a>
+            <a href="#wisdom" class="hover:text-sandalwood transition-colors">Wisdom</a>
+            <a href="#gallery" class="hover:text-sandalwood transition-colors">Living</a>
+            <a href="#podcast" class="hover:text-sandalwood transition-colors">Podcast</a>
+            <a href="#sounds" class="hover:text-sandalwood transition-colors">Sounds</a>
+            <a href="#meditation" class="hover:text-sandalwood transition-colors">Meditation</a>
+            
+            <!-- Theme Toggle -->
+            <button onclick="toggleTheme()" class="p-2 rounded-full bg-white/20 dark:bg-white/5 hover:bg-white/30 dark:hover:bg-white/10 transition-all border border-white/20 dark:border-white/10" aria-label="Toggle Theme">
+                <i data-feather="sun" id="sun-icon" class="w-4 h-4 text-sandalwood hidden"></i>
+                <i data-feather="moon" id="moon-icon" class="w-4 h-4 text-sandalwood"></i>
+            </button>
+        </div>
+        <a href="https://gemini.google.com/gem/1nLLI_DBTQ0Gf8LvLhqOOHyLQG4xNAj-i?usp=sharing" target="_blank" class="hidden md:flex items-center space-x-2 px-5 py-2 rounded-full border border-gold/40 text-gold hover:bg-gold hover:text-white transition-all duration-300 bg-white/10 dark:bg-white/5">
+            <i data-feather="message-circle" class="w-4 h-4"></i>
+            <span>Ask the Sage</span>
+        </a>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="home" class="hero-bg min-h-screen flex flex-col items-center justify-center relative px-6 text-center">
+        <!-- Decorative Logo Circle -->
+        <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+            <svg class="w-[500px] h-[500px] md:w-[600px] md:h-[600px] animate-[spin_90s_linear_infinite] text-sandalwood" viewBox="0 0 200 200" fill="none">
+                <!-- Outer ring -->
+                <circle cx="100" cy="100" r="95" class="hero-logo-circle" stroke-dasharray="4 6" />
+                <!-- Middle ring -->
+                <circle cx="100" cy="100" r="80" class="hero-logo-circle" />
+                <!-- Inner ring -->
+                <circle cx="100" cy="100" r="65" class="hero-logo-circle" stroke-dasharray="2 8" />
+                <!-- Sacred geometry -->
+                <circle cx="100" cy="100" r="50" class="hero-logo-circle" />
+                <path d="M100 50 L100 150 M50 100 L150 100" class="hero-logo-circle" />
+                <path d="M64.6 64.6 L135.4 135.4 M64.6 135.4 L135.4 64.6" class="hero-logo-circle" />
+                <!-- Lotus petal hints -->
+                <ellipse cx="100" cy="60" rx="12" ry="20" class="hero-logo-circle" opacity="0.08" />
+                <ellipse cx="100" cy="140" rx="12" ry="20" class="hero-logo-circle" opacity="0.08" />
+                <ellipse cx="60" cy="100" rx="20" ry="12" class="hero-logo-circle" opacity="0.08" />
+                <ellipse cx="140" cy="100" rx="20" ry="12" class="hero-logo-circle" opacity="0.08" />
+                <!-- Circular text path -->
+                <defs>
+                    <path id="textCircle" d="M100,100 m-75,0 a75,75 0 1,1 150,0 a75,75 0 1,1 -150,0" />
+                </defs>
+                <text class="hero-logo-text" opacity="0.08">
+                    <textPath href="#textCircle" startOffset="0%">ONENESS · WISDOM · PEACE · DHARMA · ONENESS · WISDOM · PEACE · DHARMA · </textPath>
+                </text>
+            </svg>
+        </div>
+
+        <h1 class="font-serif text-6xl md:text-8xl lg:text-9xl mb-6 tracking-tight" style="animation: float 6s ease-in-out infinite;">Ekatva</h1>
+        <p class="font-sans text-lg md:text-xl text-muted tracking-[0.3em] uppercase mb-12 max-w-2xl">Discover Oneness Through Timeless Wisdom</p>
+        
+        <a href="#wisdom" class="flex flex-col items-center text-sandalwood hover:text-saffron transition-colors mt-12 animate-bounce">
+            <span class="text-sm tracking-widest uppercase mb-2">Begin Journey</span>
+            <i data-feather="chevron-down" class="w-6 h-6"></i>
+        </a>
+
+        <style>
+            @keyframes float {
+                0%, 100% { transform: translateY(0px); }
+                50% { transform: translateY(-12px); }
+            }
+        </style>
+    </header>
+
+    <div class="section-divider"></div>
+
+    <!-- Ask the Sage Section -->
+    <section id="sage" class="py-28 px-6 liquid-glass-section relative transition-all duration-500">
+        <div class="max-w-4xl mx-auto text-center">
+            <!-- Section Label -->
+            <div class="flex items-center justify-center space-x-4 mb-8">
+                <div class="h-px bg-sandalwood/40 w-12"></div>
+                <span class="text-sandalwood text-xs tracking-[0.3em] uppercase">Divine Guidance</span>
+                <div class="h-px bg-sandalwood/40 w-12"></div>
+            </div>
+
+            <!-- Main Title -->
+            <h2 class="font-serif text-4xl md:text-5xl lg:text-6xl mb-6 text-ink-light dark:text-ink-dark leading-tight">
+                Seek the Wisdom<br>of the Sage
+            </h2>
+
+            <!-- Subtitle -->
+            <p class="font-sans text-lg md:text-xl text-muted max-w-2xl mx-auto mb-4 leading-relaxed">
+                Let the ancient light of Dharma illuminate your modern path.
+            </p>
+            <p class="font-sans text-sm text-muted/70 max-w-xl mx-auto mb-12 leading-relaxed italic">
+                Ask any question about the Bhagavad Gita, Stoic philosophy, mindfulness, or finding peace in the noise of the digital age. The Sage draws from timeless wisdom to guide you.
+            </p>
+
+            <!-- Decorative Icon -->
+            <div class="flex justify-center mb-10">
+                <div class="liquid-glass w-24 h-24 rounded-full flex items-center justify-center" style="border-radius:50%;">
+                    <i data-feather="feather" class="w-10 h-10 text-sandalwood opacity-70"></i>
+                </div>
+            </div>
+
+            <!-- CTA Button -->
+            <a href="https://gemini.google.com/gem/1nLLI_DBTQ0Gf8LvLhqOOHyLQG4xNAj-i?usp=sharing" target="_blank" 
+               class="inline-flex items-center gap-3 px-10 py-4 rounded-2xl text-white font-sans tracking-widest uppercase text-sm transition-all duration-300 hover:scale-105 hover:shadow-2xl"
+               style="background: linear-gradient(135deg, rgba(212,163,115,0.85), rgba(224,122,95,0.85)); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.25); box-shadow: 0 8px 32px rgba(212,163,115,0.3), inset 0 1px 0 rgba(255,255,255,0.3);">
+                <i data-feather="message-circle" class="w-5 h-5"></i>
+                <span>Ask the Sage</span>
+                <i data-feather="arrow-right" class="w-4 h-4"></i>
+            </a>
+
+            <!-- Trust line -->
+            <p class="mt-8 text-xs text-muted/50 tracking-widest uppercase">Powered by Ancient Wisdom · Guided by AI</p>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Krishna's Mirror — Soul Reflection Game -->
+    <section id="mirror" class="py-28 px-6 liquid-glass-section relative transition-all duration-500">
+        <div class="max-w-4xl mx-auto text-center">
+            <!-- Section Label -->
+            <div class="flex items-center justify-center space-x-4 mb-8">
+                <div class="h-px bg-sandalwood/40 w-12"></div>
+                <span class="text-sandalwood text-xs tracking-[0.3em] uppercase">Inner Reflection</span>
+                <div class="h-px bg-sandalwood/40 w-12"></div>
+            </div>
+
+            <!-- Main Title -->
+            <h2 class="font-serif text-4xl md:text-5xl lg:text-6xl mb-6 text-ink-light dark:text-ink-dark leading-tight">
+                Look Into<br>Krishna's Mirror
+            </h2>
+
+            <!-- Subtitle -->
+            <p class="font-sans text-lg md:text-xl text-muted max-w-2xl mx-auto mb-4 leading-relaxed">
+                A sacred journey of 28 questions, guided by the Bhagavad Gita, to reveal the emotion quietly leading your heart.
+            </p>
+            <p class="font-sans text-sm text-muted/70 max-w-xl mx-auto mb-12 leading-relaxed italic">
+                This is not a test — it is a mirror. Walk through four spiritual dimensions — Anger, Sadness, Joy, and Calm — and discover your soul archetype: Rajasic Warrior, Sattvic Bloom, Tamasic Healer, or Sattvic Soul.
+            </p>
+
+
+
+            <!-- CTA Button -->
+            <a href="Game.html"
+               class="inline-flex items-center gap-3 px-10 py-4 rounded-2xl text-white font-sans tracking-widest uppercase text-sm transition-all duration-300 hover:scale-105 hover:shadow-2xl"
+               style="background: linear-gradient(135deg, rgba(212,163,115,0.85), rgba(224,122,95,0.85)); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.25); box-shadow: 0 8px 32px rgba(212,163,115,0.3), inset 0 1px 0 rgba(255,255,255,0.3);">
+                <i data-feather="eye" class="w-5 h-5"></i>
+                <span>Begin Soul Reflection</span>
+                <i data-feather="arrow-right" class="w-4 h-4"></i>
+            </a>
+
+            <!-- Trust line -->
+            <p class="mt-8 text-xs text-muted/50 tracking-widest uppercase">28 Questions · 4 Spiritual Sets · Your True Inner State</p>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Daily Wisdom Section -->
+    <section id="wisdom" class="py-24 px-6 md:px-12 lg:px-24 min-h-screen flex items-center liquid-glass-section relative transition-all duration-500">
+        <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div class="liquid-glass rounded-2xl overflow-hidden group p-1">
+                <img src="ChatGPT Image Feb 4, 2026, 10_48_40 AM (1).png" alt="The Digital Stoic" class="w-full h-auto object-cover transform hover:scale-105 transition-transform duration-700 rounded-2xl">
+            </div>
+
+            <div class="liquid-glass p-10 flex flex-col space-y-8">
+                <div class="flex items-center space-x-4 mb-2">
+                    <div class="h-px bg-sandalwood w-12"></div>
+                    <span class="text-sandalwood text-sm tracking-widest uppercase">Timeless Verses</span>
+                </div>
+                
+                <div id="verse-container" class="verse-content">
+                    <h2 id="verse-sanskrit" class="font-serif text-2xl md:text-3xl leading-relaxed text-ink-light dark:text-ink-dark mb-6">
+                        कर्मण्येवाधिकारस्ते मा फलेषु कदाचन।<br>
+                        मा कर्मफलहेतुर्भूर्मा ते सङ्गोऽस्त्वकर्मणि॥
+                    </h2>
+                    <p id="verse-english" class="font-sans text-lg text-muted italic mb-6">"You have a right to perform your prescribed duty, but you are not entitled to the fruits of action."</p>
+                    <div class="border-l-2 border-saffron pl-4 mb-8">
+                        <p id="verse-meaning" class="text-sm md:text-base text-ink-light/80 dark:text-ink-dark/80 leading-relaxed">Focus on the effort, not the outcome. When we detach from results, we achieve performance without anxiety.</p>
+                    </div>
+                </div>
+
+                <button onclick="nextVerse()" class="self-start px-8 py-3 bg-sandalwood/80 text-white rounded-xl hover:bg-saffron shadow-lg shadow-sandalwood/20 transition-all tracking-wider text-sm flex items-center space-x-2 backdrop-blur-sm">
+                    <span>Next Wisdom</span>
+                    <i data-feather="arrow-right" class="w-4 h-4"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Lively Gallery Section -->
+    <section id="gallery" class="py-24 px-6 liquid-glass-section relative transition-all duration-500 overflow-hidden">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="font-serif text-4xl mb-4 text-ink-light dark:text-ink-dark">Living Moments</h2>
+                <p class="text-muted tracking-widest uppercase text-xs">Witness the oneness of nature</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Image 1 -->
+                <div class="photo-card liquid-glass rounded-3xl overflow-hidden group">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1528715471579-d1bcf0ba5e83?auto=format&fit=crop&q=80&w=800" alt="Mountain Morning" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+                            <span class="text-white text-xs tracking-widest uppercase">The Peak of Stillness</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="font-serif text-lg mb-2">Dawn at Rishikesh</h4>
+                        <p class="text-xs text-muted leading-relaxed">The sun rises not to wake the world, but to remind it of its own inner light.</p>
+                    </div>
+                </div>
+
+                <!-- Image 2 -->
+                <div class="photo-card liquid-glass rounded-3xl overflow-hidden group">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="kazuend-cCthPLHmrzI-unsplash.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+                            <span class="text-white text-xs tracking-widest uppercase">Flowing Life</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="font-serif text-lg mb-2">The River's Secret</h4>
+                        <p class="text-xs text-muted leading-relaxed">Water does not struggle against the rock; it simply finds the path through it.</p>
+                    </div>
+                </div>
+
+                <!-- Image 3 -->
+                <div class="photo-card liquid-glass rounded-3xl overflow-hidden group">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&q=80&w=800" alt="Meditation Grove" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+                            <span class="text-white text-xs tracking-widest uppercase">Presence</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="font-serif text-lg mb-2">The Silent Grove</h4>
+                        <p class="text-xs text-muted leading-relaxed">In the center of the storm, there is a place where the leaves never shake.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Podcast Section -->
+    <section id="podcast" class="py-24 px-6 liquid-glass-section relative transition-all duration-500">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="mb-12">
+                <h2 class="font-serif text-4xl mb-4 text-ink-light dark:text-ink-dark">Satsang Podcast</h2>
+                <p class="text-muted tracking-widest uppercase text-xs">Wisdom for the Digital Commute</p>
+            </div>
+
+            <div class="glass-card p-10 rounded-[2rem] flex flex-col md:flex-row items-center gap-10">
+                <div class="w-40 h-40 bg-sandalwood/80 rounded-2xl flex items-center justify-center shadow-lg relative group overflow-hidden backdrop-blur-sm">
+                    <div class="absolute inset-0 bg-white/10 opacity-20 pointer-events-none"></div>
+                    <i data-feather="mic" class="w-16 h-16 text-white opacity-80 group-hover:scale-110 transition-transform"></i>
+                    <div class="absolute -bottom-2 -right-2 w-12 h-12 bg-saffron rounded-full flex items-center justify-center text-white shadow-md">
+                        <i data-feather="headphones" class="w-5 h-5"></i>
+                    </div>
+                </div>
+                
+                <div class="flex-1 text-left relative z-10">
+                    <h3 class="font-serif text-2xl mb-2 text-ink-light dark:text-ink-dark">Meditations for Metro</h3>
+                    <p class="text-ink-light/70 dark:text-ink-dark/60 text-sm mb-6 leading-relaxed">Join a peaceful conversation exploring how the Gita's wisdom translates to our modern, busy lives. Learn to focus on action, not outcomes.</p>
+                    
+                    <div class="flex items-center gap-4">
+                        <button onclick="togglePodcast()" id="podcast-btn" class="flex items-center gap-3 px-6 py-3 bg-ink-light/80 dark:bg-ink-dark/80 text-paper-light dark:text-paper-dark rounded-full hover:bg-sandalwood transition-all group shadow-md backdrop-blur-sm">
+                            <i data-feather="play" id="pod-play-icon" class="w-5 h-5 fill-current"></i>
+                            <i data-feather="pause" id="pod-pause-icon" class="w-5 h-5 hidden fill-current"></i>
+                            <span id="pod-status">Listen Now</span>
+                        </button>
+                        <div class="h-1.5 flex-1 bg-white/20 dark:bg-white/10 rounded-full overflow-hidden">
+                            <div id="pod-progress" class="h-full bg-sandalwood w-0 transition-all duration-300"></div>
+                        </div>
+                    </div>
+                    <audio id="podcast-audio" src="download (1).wav"></audio>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ambient Soundscape Section -->
+    <section id="sounds" class="py-24 px-6 liquid-glass-section relative transition-all duration-500">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="font-serif text-4xl mb-4 text-ink-light dark:text-ink-dark">Ambient Sanctuary</h2>
+                <p class="text-muted tracking-widest uppercase text-xs">Layer your meditation soundscape</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Rain Sound -->
+                <div class="liquid-glass p-8 text-center group">
+                    <div class="w-16 h-16 bg-white/30 dark:bg-white/5 rounded-full flex items-center justify-center mx-auto mb-6 shadow-sm border border-white/30 dark:border-white/10">
+                        <i data-feather="cloud-rain" class="text-sandalwood"></i>
+                    </div>
+                    <h4 class="font-serif text-xl mb-4 text-ink-light dark:text-ink-dark">Soft Rain</h4>
+                    <input type="range" min="0" max="1" step="0.01" value="0" id="range-rain" oninput="updateAmbient('rain', this.value)" class="ambient-slider w-full">
+                    <audio id="audio-rain" src="liecio-calming-rain-257596.mp3" loop></audio>
+                </div>
+
+                <!-- Forest Sound -->
+                <div class="liquid-glass p-8 text-center group">
+                    <div class="w-16 h-16 bg-white/30 dark:bg-white/5 rounded-full flex items-center justify-center mx-auto mb-6 shadow-sm border border-white/30 dark:border-white/10">
+                        <i data-feather="wind" class="text-sandalwood"></i>
+                    </div>
+                    <h4 class="font-serif text-xl mb-4 text-ink-light dark:text-ink-dark">Forest Wind</h4>
+                    <input type="range" min="0" max="1" step="0.01" value="0" id="range-forest" oninput="updateAmbient('forest', this.value)" class="ambient-slider w-full">
+                    <audio id="audio-forest" src="rickmagee-nature-soft-forest-winds-and-birds-401082.mp3" loop></audio>
+                </div>
+
+                <!-- Tanpura / Drone Sound -->
+                <div class="liquid-glass p-8 text-center group">
+                    <div class="w-16 h-16 bg-white/30 dark:bg-white/5 rounded-full flex items-center justify-center mx-auto mb-6 shadow-sm border border-white/30 dark:border-white/10">
+                        <i data-feather="sun" class="text-sandalwood"></i>
+                    </div>
+                    <h4 class="font-serif text-xl mb-4 text-ink-light dark:text-ink-dark">Tanpura Drone</h4>
+                    <input type="range" min="0" max="1" step="0.01" value="0" id="range-drone" oninput="updateAmbient('drone', this.value)" class="ambient-slider w-full">
+                    <audio id="audio-drone" src="freesound_community-tanpura-78698.mp3" loop></audio>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Meditation Section -->
+    <section id="meditation" class="py-24 px-6 min-h-screen flex flex-col items-center justify-center liquid-glass-section overflow-hidden relative transition-all duration-500">
+        <div class="text-center mb-16 relative z-10">
+            <h2 class="font-serif text-3xl md:text-4xl mb-4 text-ink-light dark:text-ink-dark">The Breath of Oneness</h2>
+            <p class="text-muted tracking-widest uppercase text-sm" id="meditation-hint">Click the heart of the circle to begin</p>
+        </div>
+
+        <!-- Breathing Sphere -->
+        <div class="relative w-80 h-80 flex items-center justify-center cursor-pointer group z-10" onclick="toggleBreathing()">
+            <!-- Animated Rings -->
+            <div id="ring-1" class="absolute inset-0 bg-sandalwood/10 rounded-full transition-all duration-[4000ms] ease-in-out"></div>
+            <div id="ring-2" class="absolute inset-8 bg-sandalwood/15 rounded-full transition-all duration-[4000ms] ease-in-out"></div>
+            <div id="ring-3" class="absolute inset-16 bg-sandalwood/20 rounded-full transition-all duration-[4000ms] ease-in-out"></div>
+            
+            <!-- Core - Liquid Glass -->
+            <div class="absolute w-32 h-32 liquid-glass rounded-full shadow-2xl flex items-center justify-center transition-transform group-hover:scale-110" style="border-radius: 50%;">
+                <div class="text-center relative z-10">
+                    <span id="breathe-label" class="block font-serif text-sandalwood text-lg">Start</span>
+                    <span id="breathe-sub" class="block text-[10px] uppercase tracking-tighter text-muted">Meditation</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Deep Ambient Background Audio -->
+        <audio id="audio-meditation-ambient" src="gregorquendel_sounddesign-water-stream-ii-139715.mp3" loop></audio>
+    </section>
+
+    <!-- Floating Sage Bot Button -->
+    <a href="https://gemini.google.com/gem/1nLLI_DBTQ0Gf8LvLhqOOHyLQG4xNAj-i?usp=sharing" target="_blank" class="fixed bottom-6 right-6 z-50 rounded-full p-5 shadow-2xl hover:scale-110 transition-all group flex items-center gap-3" style="background: rgba(212,175,55,0.7); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.3); color: white;">
+        <i data-feather="feather" class="w-6 h-6"></i>
+        <span class="max-w-0 overflow-hidden group-hover:max-w-xs transition-all duration-500 whitespace-nowrap font-sans uppercase tracking-widest text-xs">Ask the Sage</span>
+    </a>
+
+    <!-- Footer -->
+    <footer class="py-20 text-center relative transition-all duration-500" style="background: rgba(44,44,44,0.6); backdrop-filter: blur(40px) saturate(1.5); border-top: 1px solid rgba(255,255,255,0.08);">
+        <div class="max-w-xl mx-auto px-6 relative z-10">
+            <h3 class="font-serif text-2xl tracking-widest mb-4 text-white/90">EKATVA</h3>
+            <p class="text-white/40 text-sm mb-8 uppercase tracking-widest italic">"Performance without anxiety. That is the true Yoga of the Digital Age."</p>
+            <div class="flex justify-center gap-6 mb-10">
+                <i data-feather="instagram" class="w-4 h-4 text-white/30 hover:text-sandalwood cursor-pointer transition-colors"></i>
+                <i data-feather="twitter" class="w-4 h-4 text-white/30 hover:text-sandalwood cursor-pointer transition-colors"></i>
+            </div>
+            <p class="text-[10px] text-white/20 tracking-[0.2em]">&copy; 2026 EKATVA SANCTUARY. FIND PEACE WITHIN THE NOISE.</p>
+        </div>
+    </footer>
+
+    <script>
+        feather.replace();
+
+        // --- Theme Engine ---
+        function toggleTheme() {
+            const isDark = document.documentElement.classList.toggle('dark');
+            document.getElementById('sun-icon').classList.toggle('hidden', !isDark);
+            document.getElementById('moon-icon').classList.toggle('hidden', isDark);
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        }
+
+        // Initialize theme
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            document.getElementById('sun-icon').classList.remove('hidden');
+            document.getElementById('moon-icon').classList.add('hidden');
+        }
+
+        // =============================================
+        // === INTERACTIVE CELESTIAL BACKGROUND ========
+        // === (PERFORMANCE OPTIMIZED) ================
+        // =============================================
+        (function() {
+            const canvas = document.getElementById('celestial-canvas');
+            const ctx = canvas.getContext('2d', { alpha: true });
+            let W, H;
+            let mouseX = 0, mouseY = 0;
+            let targetMouseX = 0, targetMouseY = 0;
+            let isDark = document.documentElement.classList.contains('dark');
+            let time = 0;
+            let cachedColors = null;
+            let frameSkip = 0;
+
+            function resize() {
+                W = canvas.width = window.innerWidth;
+                H = canvas.height = window.innerHeight;
+            }
+            resize();
+            window.addEventListener('resize', resize);
+
+            document.addEventListener('mousemove', (e) => {
+                targetMouseX = e.clientX;
+                targetMouseY = e.clientY;
+            });
+
+            const observer = new MutationObserver(() => {
+                isDark = document.documentElement.classList.contains('dark');
+                cachedColors = null; // invalidate cache
+            });
+            observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+
+            // --- Cached Color Palettes (Solar System Inspired) ---
+            const darkColors = {
+                starColors: ['#FFFFFF', '#FFE4B5', '#B0C4DE', '#DDA0DD', '#ADD8E6', '#FFFACD'],
+                planetColors: [
+                    { body: '#A0A0A0', ring: 'rgba(160,160,160,0.3)', glow: 'rgba(160,160,160,0.12)' },    // Mercury
+                    { body: '#E8C870', ring: 'rgba(232,200,112,0.35)', glow: 'rgba(232,200,112,0.15)' },   // Venus
+                    { body: '#4B8BBE', ring: 'rgba(75,139,190,0.3)', glow: 'rgba(75,139,190,0.18)' },      // Earth
+                    { body: '#C1440E', ring: 'rgba(193,68,14,0.35)', glow: 'rgba(193,68,14,0.15)' },       // Mars
+                    { body: '#D4A373', ring: 'rgba(212,163,115,0.4)', glow: 'rgba(212,163,115,0.2)' },     // Jupiter
+                    { body: '#E8D186', ring: 'rgba(232,209,134,0.5)', glow: 'rgba(232,209,134,0.18)' },    // Saturn
+                    { body: '#7EC8E3', ring: 'rgba(126,200,227,0.35)', glow: 'rgba(126,200,227,0.15)' },   // Uranus
+                    { body: '#4169E1', ring: 'rgba(65,105,225,0.3)', glow: 'rgba(65,105,225,0.18)' },      // Neptune
+                ],
+                nebulaColors: ['rgba(224,122,95,0.06)', 'rgba(212,175,55,0.05)', 'rgba(196,155,187,0.055)'],
+                starAlpha: 0.9,
+            };
+            const lightColors = {
+                starColors: ['#D4A373', '#C49BBB', '#7B9EA8', '#D4AF37', '#E07A5F', '#A0522D'],
+                planetColors: [
+                    { body: 'rgba(160,160,160,0.5)', ring: 'rgba(160,160,160,0.2)', glow: 'rgba(160,160,160,0.08)' },   // Mercury
+                    { body: 'rgba(232,200,112,0.55)', ring: 'rgba(232,200,112,0.2)', glow: 'rgba(232,200,112,0.1)' },   // Venus
+                    { body: 'rgba(75,139,190,0.55)', ring: 'rgba(75,139,190,0.2)', glow: 'rgba(75,139,190,0.12)' },     // Earth
+                    { body: 'rgba(193,68,14,0.5)', ring: 'rgba(193,68,14,0.2)', glow: 'rgba(193,68,14,0.1)' },          // Mars
+                    { body: 'rgba(212,163,115,0.55)', ring: 'rgba(212,163,115,0.25)', glow: 'rgba(212,163,115,0.12)' }, // Jupiter
+                    { body: 'rgba(232,209,134,0.55)', ring: 'rgba(232,209,134,0.3)', glow: 'rgba(232,209,134,0.12)' },  // Saturn
+                    { body: 'rgba(126,200,227,0.5)', ring: 'rgba(126,200,227,0.2)', glow: 'rgba(126,200,227,0.1)' },    // Uranus
+                    { body: 'rgba(65,105,225,0.5)', ring: 'rgba(65,105,225,0.18)', glow: 'rgba(65,105,225,0.1)' },      // Neptune
+                ],
+                nebulaColors: ['rgba(212,163,115,0.06)', 'rgba(224,122,95,0.05)', 'rgba(196,155,187,0.055)'],
+                starAlpha: 0.6,
+            };
+            function getColors() {
+                if (!cachedColors) cachedColors = isDark ? darkColors : lightColors;
+                return cachedColors;
+            }
+
+            // --- Stars (OPTIMIZED: fewer, simpler) ---
+            const STAR_COUNT = 120;
+            const stars = [];
+            for (let i = 0; i < STAR_COUNT; i++) {
+                stars.push({
+                    x: Math.random() * 3000 - 500,
+                    y: Math.random() * 3000 - 500,
+                    size: Math.random() * 3 + 0.6,
+                    twinkleSpeed: Math.random() * 0.03 + 0.005,
+                    twinkleOffset: Math.random() * Math.PI * 2,
+                    colorIdx: Math.floor(Math.random() * 6),
+                    parallax: Math.random() * 0.06 + 0.015,
+                });
+            }
+
+            // --- Solar System Planets (hand-placed, spread out) ---
+            const planets = [
+                { // Mercury - tiny, fast orbit
+                    baseX: 300, baseY: 200, size: 8, colorIdx: 0,
+                    orbitRadius: 20, orbitSpeed: 0.0008, orbitAngle: 0,
+                    rotation: 0, rotationSpeed: 0.002, hasRing: false,
+                    tilt: 0.3, parallax: 0.04,
+                },
+                { // Venus - medium, yellowish
+                    baseX: 900, baseY: 450, size: 14, colorIdx: 1,
+                    orbitRadius: 30, orbitSpeed: -0.0005, orbitAngle: 1.2,
+                    rotation: 0, rotationSpeed: 0.001, hasRing: false,
+                    tilt: 0.25, parallax: 0.05,
+                },
+                { // Earth - blue marble
+                    baseX: 1500, baseY: 300, size: 15, colorIdx: 2,
+                    orbitRadius: 32, orbitSpeed: 0.0004, orbitAngle: 2.5,
+                    rotation: 0, rotationSpeed: 0.003, hasRing: false,
+                    tilt: 0.4, parallax: 0.055,
+                },
+                { // Mars - small, reddish
+                    baseX: 500, baseY: 800, size: 11, colorIdx: 3,
+                    orbitRadius: 25, orbitSpeed: -0.0003, orbitAngle: 4.1,
+                    rotation: 0, rotationSpeed: 0.003, hasRing: false,
+                    tilt: 0.35, parallax: 0.045,
+                },
+                { // Jupiter - the giant
+                    baseX: 1800, baseY: 700, size: 32, colorIdx: 4,
+                    orbitRadius: 50, orbitSpeed: 0.0002, orbitAngle: 0.8,
+                    rotation: 0, rotationSpeed: 0.005, hasRing: false,
+                    tilt: 0.2, parallax: 0.07,
+                },
+                { // Saturn - ringed beauty
+                    baseX: 200, baseY: 1200, size: 26, colorIdx: 5,
+                    orbitRadius: 45, orbitSpeed: -0.00015, orbitAngle: 3.5,
+                    rotation: 0, rotationSpeed: 0.004, hasRing: true,
+                    tilt: 0.35, parallax: 0.065,
+                },
+                { // Uranus - tilted ice giant
+                    baseX: 1200, baseY: 1100, size: 18, colorIdx: 6,
+                    orbitRadius: 35, orbitSpeed: 0.00012, orbitAngle: 5.0,
+                    rotation: 0, rotationSpeed: 0.002, hasRing: true,
+                    tilt: 0.6, parallax: 0.06,
+                },
+                { // Neptune - distant blue
+                    baseX: 700, baseY: 1500, size: 17, colorIdx: 7,
+                    orbitRadius: 35, orbitSpeed: -0.0001, orbitAngle: 1.8,
+                    rotation: 0, rotationSpeed: 0.002, hasRing: false,
+                    tilt: 0.3, parallax: 0.075,
+                },
+            ];
+
+            // --- Shooting Stars ---
+            const shootingStars = [];
+            function spawnShootingStar() {
+                if (shootingStars.length > 3) return; // cap active count
+                shootingStars.push({
+                    x: Math.random() * W,
+                    y: Math.random() * H * 0.4,
+                    vx: (Math.random() * 4 + 3) * (Math.random() > 0.5 ? 1 : -1),
+                    vy: Math.random() * 2 + 1.5,
+                    life: 1.0,
+                    decay: Math.random() * 0.02 + 0.01,
+                });
+            }
+
+            // --- Nebula Clouds (OPTIMIZED: fewer) ---
+            const NEBULA_COUNT = 3;
+            const nebulae = [];
+            for (let i = 0; i < NEBULA_COUNT; i++) {
+                nebulae.push({
+                    x: Math.random() * 2500 - 300,
+                    y: Math.random() * 2500 - 300,
+                    size: Math.random() * 350 + 200,
+                    colorIdx: i % 3,
+                    parallax: Math.random() * 0.02 + 0.008,
+                    pulsePhase: Math.random() * Math.PI * 2,
+                });
+            }
+
+            // --- Constellations (OPTIMIZED: fewer) ---
+            const constellations = [];
+            for (let c = 0; c < 2; c++) {
+                const cx = Math.random() * 2000;
+                const cy = Math.random() * 2000;
+                const points = [];
+                const numPts = Math.floor(Math.random() * 4) + 3;
+                for (let p = 0; p < numPts; p++) {
+                    points.push({
+                        x: cx + (Math.random() - 0.5) * 220,
+                        y: cy + (Math.random() - 0.5) * 220,
+                    });
+                }
+                constellations.push({ points, parallax: Math.random() * 0.04 + 0.01 });
+            }
+
+            // --- Optimized Animation Loop ---
+            function animate() {
+                requestAnimationFrame(animate);
+                
+                // Skip every other frame for performance
+                frameSkip++;
+                if (frameSkip % 2 !== 0) return;
+                
+                time++;
+                mouseX += (targetMouseX - mouseX) * 0.1;
+                mouseY += (targetMouseY - mouseY) * 0.1;
+
+                const colors = getColors();
+                const scrollY = window.pageYOffset || 0;
+                const mx = mouseX - W * 0.5;
+                const my = mouseY - H * 0.5;
+
+                ctx.clearRect(0, 0, W, H);
+
+                // --- Nebulae (simple circles, no gradient per-frame cache miss) ---
+                for (let i = 0; i < nebulae.length; i++) {
+                    const n = nebulae[i];
+                    const px = n.x - mx * n.parallax - scrollY * n.parallax * 0.3;
+                    const py = n.y - my * n.parallax - scrollY * n.parallax * 0.5;
+                    const sz = n.size * (1 + Math.sin(time * 0.002 + n.pulsePhase) * 0.1);
+                    const grad = ctx.createRadialGradient(px, py, 0, px, py, sz);
+                    grad.addColorStop(0, colors.nebulaColors[n.colorIdx]);
+                    grad.addColorStop(1, 'transparent');
+                    ctx.fillStyle = grad;
+                    ctx.beginPath();
+                    ctx.arc(px, py, sz, 0, 6.283);
+                    ctx.fill();
+                }
+
+                // --- Constellations ---
+                const constAlpha = isDark ? 'rgba(212,163,115,0.12)' : 'rgba(212,163,115,0.06)';
+                ctx.strokeStyle = constAlpha;
+                ctx.lineWidth = 1;
+                for (let i = 0; i < constellations.length; i++) {
+                    const c = constellations[i];
+                    ctx.beginPath();
+                    for (let j = 0; j < c.points.length; j++) {
+                        const p = c.points[j];
+                        const px = p.x - mx * c.parallax - scrollY * c.parallax * 0.5;
+                        const py = p.y - my * c.parallax - scrollY * c.parallax * 0.5;
+                        if (j === 0) ctx.moveTo(px, py);
+                        else ctx.lineTo(px, py);
+                    }
+                    ctx.stroke();
+                    // dots at points
+                    ctx.fillStyle = constAlpha;
+                    for (let j = 0; j < c.points.length; j++) {
+                        const p = c.points[j];
+                        const px = p.x - mx * c.parallax - scrollY * c.parallax * 0.5;
+                        const py = p.y - my * c.parallax - scrollY * c.parallax * 0.5;
+                        ctx.beginPath();
+                        ctx.arc(px, py, 2, 0, 6.283);
+                        ctx.fill();
+                    }
+                }
+
+                // --- Stars (simple dots, no glow/sparkle on most) ---
+                const starAlpha = colors.starAlpha;
+                for (let i = 0; i < stars.length; i++) {
+                    const s = stars[i];
+                    const px = s.x - mx * s.parallax - scrollY * s.parallax * 0.3;
+                    const py = s.y - my * s.parallax - scrollY * s.parallax * 0.5;
+                    const twinkle = (Math.sin(time * s.twinkleSpeed + s.twinkleOffset) + 1) * 0.5;
+                    ctx.globalAlpha = starAlpha * (0.4 + twinkle * 0.6);
+                    ctx.fillStyle = colors.starColors[s.colorIdx];
+                    ctx.beginPath();
+                    ctx.arc(px, py, s.size, 0, 6.283);
+                    ctx.fill();
+                }
+                ctx.globalAlpha = 1;
+
+                // --- Planets (simplified: solid color + ring, no bands) ---
+                for (let i = 0; i < planets.length; i++) {
+                    const p = planets[i];
+                    p.orbitAngle += p.orbitSpeed;
+                    p.rotation += p.rotationSpeed;
+
+                    const bpx = p.baseX - mx * p.parallax - scrollY * p.parallax * 0.4;
+                    const bpy = p.baseY - my * p.parallax - scrollY * p.parallax * 0.6;
+                    const px = bpx + Math.cos(p.orbitAngle) * p.orbitRadius * 0.3;
+                    const py = bpy + Math.sin(p.orbitAngle) * p.orbitRadius * 0.15;
+                    const col = colors.planetColors[p.colorIdx];
+
+                    // Glow
+                    const glowGrad = ctx.createRadialGradient(px, py, p.size * 0.5, px, py, p.size * 2.5);
+                    glowGrad.addColorStop(0, col.glow);
+                    glowGrad.addColorStop(1, 'transparent');
+                    ctx.fillStyle = glowGrad;
+                    ctx.beginPath();
+                    ctx.arc(px, py, p.size * 2.5, 0, 6.283);
+                    ctx.fill();
+
+                    // Body
+                    ctx.fillStyle = col.body;
+                    ctx.beginPath();
+                    ctx.arc(px, py, p.size, 0, 6.283);
+                    ctx.fill();
+
+                    // Ring
+                    if (p.hasRing) {
+                        ctx.save();
+                        ctx.translate(px, py);
+                        ctx.scale(1, p.tilt);
+                        ctx.strokeStyle = col.ring;
+                        ctx.lineWidth = p.size * 0.12;
+                        ctx.beginPath();
+                        ctx.arc(0, 0, p.size * 1.8, 0, 6.283);
+                        ctx.stroke();
+                        ctx.restore();
+                    }
+                }
+
+                // --- Shooting Stars ---
+                if (Math.random() < 0.005) spawnShootingStar();
+                for (let i = shootingStars.length - 1; i >= 0; i--) {
+                    const ss = shootingStars[i];
+                    ss.x += ss.vx;
+                    ss.y += ss.vy;
+                    ss.life -= ss.decay;
+                    if (ss.life <= 0) { shootingStars.splice(i, 1); continue; }
+                    const ssColor = isDark ? `rgba(255,235,200,${ss.life * 0.7})` : `rgba(212,163,115,${ss.life * 0.5})`;
+                    ctx.strokeStyle = ssColor;
+                    ctx.lineWidth = 1.5;
+                    ctx.beginPath();
+                    ctx.moveTo(ss.x - ss.vx * 8, ss.y - ss.vy * 8);
+                    ctx.lineTo(ss.x, ss.y);
+                    ctx.stroke();
+                }
+            }
+
+            animate();
+        })();
+
+        // --- Verse Navigation ---
+        const verses = [
+            {
+                sanskrit: "कर्मण्येवाधिकारस्ते मा फलेषु कदाचन।<br>मा कर्मफलहेतुर्भूर्मा ते सङ्गोऽस्त्वकर्मणि॥",
+                english: "\"You have a right to perform your prescribed duty, but you are not entitled to the fruits of action.\"",
+                meaning: "Focus on the effort, not the outcome. When we detach from results, we achieve performance without anxiety."
+            },
+            {
+                sanskrit: "ध्यायतो विषयान्पुंसः सङ्गस्तेषूपजायते।<br>सङ्गात्सञ्जायते कामः कामात्क्रोधोऽभिजायते॥",
+                english: "\"While contemplating sense objects, attachment arises; from attachment comes desire; from desire comes anger.\"",
+                meaning: "The root of mental noise is constant chasing of data. Reclaim the reins and find stillness."
+            }
+        ];
+        let verseIdx = 0;
+        function nextVerse() {
+            const el = document.getElementById('verse-container');
+            el.classList.add('verse-fade-out');
+            setTimeout(() => {
+                verseIdx = (verseIdx + 1) % verses.length;
+                document.getElementById('verse-sanskrit').innerHTML = verses[verseIdx].sanskrit;
+                document.getElementById('verse-english').innerText = verses[verseIdx].english;
+                document.getElementById('verse-meaning').innerText = verses[verseIdx].meaning;
+                el.classList.remove('verse-fade-out');
+            }, 500);
+        }
+
+        // --- Podcast Player ---
+        const podAudio = document.getElementById('podcast-audio');
+        const podStatus = document.getElementById('pod-status');
+        const podProgress = document.getElementById('pod-progress');
+        const podPlayIcon = document.getElementById('pod-play-icon');
+        const podPauseIcon = document.getElementById('pod-pause-icon');
+
+        function togglePodcast() {
+            if (podAudio.paused) {
+                podAudio.play();
+                podStatus.innerText = "Playing...";
+                podPlayIcon.classList.add('hidden');
+                podPauseIcon.classList.remove('hidden');
+            } else {
+                podAudio.pause();
+                podStatus.innerText = "Paused";
+                podPlayIcon.classList.remove('hidden');
+                podPauseIcon.classList.add('hidden');
+            }
+        }
+        podAudio.addEventListener('timeupdate', () => {
+            const percent = (podAudio.currentTime / podAudio.duration) * 100;
+            podProgress.style.width = percent + '%';
+        });
+
+        // --- Ambient Sound Controls ---
+        function updateAmbient(type, value) {
+            const audio = document.getElementById('audio-' + type);
+            audio.volume = value;
+            if (value > 0 && audio.paused) {
+                audio.play().catch(e => console.log("User interaction required"));
+            } else if (value == 0) {
+                audio.pause();
+            }
+        }
+
+        // --- Interactive Breathing ---
+        let breathing = false;
+        let breathInterval;
+        const label = document.getElementById('breathe-label');
+        const hint = document.getElementById('meditation-hint');
+        const rings = [document.getElementById('ring-1'), document.getElementById('ring-2'), document.getElementById('ring-3')];
+        const medAmbient = document.getElementById('audio-meditation-ambient');
+
+        function toggleBreathing() {
+            if (!breathing) {
+                breathing = true;
+                hint.innerText = "Breath in... Breath out...";
+                
+                // Silence other noise
+                if (!podAudio.paused) togglePodcast();
+                ['rain', 'forest', 'drone'].forEach(type => {
+                    document.getElementById('audio-' + type).pause();
+                    document.getElementById('range-' + type).value = 0;
+                });
+
+                medAmbient.volume = 0.5;
+                medAmbient.play();
+
+                startCycle();
+                breathInterval = setInterval(startCycle, 8000);
+            } else {
+                breathing = false;
+                clearInterval(breathInterval);
+                label.innerText = "Start";
+                hint.innerText = "Click to begin again";
+                rings.forEach(r => r.classList.remove('ring-expand'));
+                medAmbient.pause();
+                medAmbient.currentTime = 0;
+            }
+        }
+
+        function startCycle() {
+            if (!breathing) return;
+            label.innerText = "Inhale";
+            rings.forEach(r => r.classList.add('ring-expand'));
+            
+            setTimeout(() => {
+                if (!breathing) return;
+                label.innerText = "Exhale";
+                rings.forEach(r => r.classList.remove('ring-expand'));
+            }, 4000);
+        }
+    </script>
+</body>
+</html>

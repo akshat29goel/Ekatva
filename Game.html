@@ -1,0 +1,1758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Krishna's Mirror — Ekatva Soul Reflection</title>
+  <meta name="description" content="A Bhagavad Gita-inspired inner reflection experience. Discover your soul archetype through spiritual self-inquiry.">
+
+  <!-- Google Fonts matching Ekatva site -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Lato:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --paper: #F9F6F0;
+      --ink: #2C2C2C;
+      --muted: #7A7A7A;
+      --sandalwood: #D4A373;
+      --saffron: #E07A5F;
+      --gold: #D4AF37;
+      --glass-bg: rgba(255, 255, 255, 0.18);
+      --glass-border: rgba(255, 255, 255, 0.35);
+      --glass-glow: rgba(0, 0, 0, 0.06);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background-color: var(--paper);
+      color: var(--ink);
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Subtle texture overlay */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.02;
+      background-image: url("https://www.transparenttextures.com/patterns/felt.png");
+    }
+
+    /* Celestial Canvas */
+    #celestial-canvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* Background EKATVA Logo */
+    #bg-ekatva-logo {
+      position: fixed;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 0;
+      pointer-events: none;
+      font-family: 'Merriweather', serif;
+      font-size: clamp(100px, 16vw, 240px);
+      font-weight: 900;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(212, 163, 115, 0.06);
+      -webkit-text-stroke: 1.5px rgba(212, 163, 115, 0.1);
+      text-shadow:
+        0 0 40px rgba(212, 163, 115, 0.08),
+        0 0 80px rgba(212, 163, 115, 0.05),
+        0 0 120px rgba(212, 163, 115, 0.03);
+      white-space: nowrap;
+      user-select: none;
+      animation: ekatva-glow 6s ease-in-out infinite;
+    }
+
+    @keyframes ekatva-glow {
+      0%, 100% { opacity: 0.7; }
+      50% { opacity: 1; }
+    }
+
+    /* Decorative floating particles - preserved icons */
+    .particle {
+      position: fixed;
+      top: -80px;
+      font-size: 22px;
+      opacity: 0.45;
+      animation: floatDown linear infinite;
+      z-index: 0;
+      pointer-events: none;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.08));
+    }
+
+    @keyframes floatDown {
+      0% {
+        transform: translateY(-80px) translateX(0px) rotate(0deg);
+        opacity: 0.5;
+      }
+      50% {
+        transform: translateY(50vh) translateX(20px) rotate(180deg);
+      }
+      100% {
+        transform: translateY(110vh) translateX(-15px) rotate(360deg);
+        opacity: 0.15;
+      }
+    }
+
+    /* Navigation Bar - matches Ekatva site */
+    .nav-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      padding: 16px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(50px) saturate(2) brightness(1.05);
+      -webkit-backdrop-filter: blur(50px) saturate(2) brightness(1.05);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+    }
+
+    .nav-brand {
+      font-family: 'Merriweather', serif;
+      font-size: 20px;
+      letter-spacing: 0.25em;
+      color: var(--ink);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .nav-brand:hover {
+      color: var(--sandalwood);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .music-btn {
+      background: rgba(255,255,255,0.3);
+      border: 1px solid rgba(212, 163, 115, 0.3);
+      border-radius: 999px;
+      padding: 8px 18px;
+      font-size: 13px;
+      font-family: 'Lato', sans-serif;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      cursor: pointer;
+      color: var(--ink);
+      transition: all 0.3s;
+      backdrop-filter: blur(10px);
+    }
+
+    .music-btn:hover {
+      background: rgba(212, 163, 115, 0.15);
+      border-color: var(--sandalwood);
+      color: var(--sandalwood);
+    }
+
+    /* Main Container - Liquid Glass */
+    .container {
+      position: relative;
+      z-index: 2;
+      width: 92%;
+      max-width: 880px;
+      margin: 100px auto 60px;
+      background: var(--glass-bg);
+      backdrop-filter: blur(40px) saturate(1.8) brightness(1.1);
+      -webkit-backdrop-filter: blur(40px) saturate(1.8) brightness(1.1);
+      border: 1px solid var(--glass-border);
+      border-radius: 2rem;
+      padding: 40px 36px;
+      box-shadow:
+        0 8px 32px var(--glass-glow),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.1);
+      overflow: hidden;
+    }
+
+    .container::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 50%;
+      background: linear-gradient(180deg, rgba(255,255,255,0.2) 0%, transparent 100%);
+      pointer-events: none;
+      border-radius: 2rem 2rem 0 0;
+    }
+
+    /* Section Label */
+    .section-label {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+
+    .section-label .line {
+      width: 40px;
+      height: 1px;
+      background: var(--sandalwood);
+      opacity: 0.5;
+    }
+
+    .section-label span {
+      font-family: 'Lato', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--sandalwood);
+    }
+
+    /* Title */
+    .title {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .title h1 {
+      font-family: 'Merriweather', serif;
+      font-size: 42px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 10px;
+      letter-spacing: -0.01em;
+    }
+
+    .title p {
+      font-family: 'Lato', sans-serif;
+      font-size: 16px;
+      color: var(--muted);
+      line-height: 1.7;
+      letter-spacing: 0.02em;
+    }
+
+    /* Krishna Visual Card - preserved */
+    .krishna-visual {
+      margin: 24px auto 20px;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 50% 35%, rgba(212,163,115,0.2) 0%, rgba(224,122,95,0.15) 40%, rgba(212,175,55,0.1) 100%);
+      border: 2px solid rgba(255,255,255,0.4);
+      box-shadow: 0 12px 40px rgba(212,163,115,0.15);
+      position: relative;
+      overflow: hidden;
+      animation: floatKrishna 4s ease-in-out infinite;
+    }
+
+    @keyframes floatKrishna {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-8px); }
+    }
+
+    .krishna-face {
+      position: absolute;
+      font-size: 80px;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -46%);
+      z-index: 2;
+    }
+
+    .flute {
+      position: absolute;
+      font-size: 34px;
+      left: 57%;
+      top: 60%;
+      transform: rotate(-10deg);
+      z-index: 3;
+    }
+
+    .peacock-crown {
+      position: absolute;
+      top: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 32px;
+      z-index: 4;
+    }
+
+    .halo {
+      position: absolute;
+      width: 130px;
+      height: 130px;
+      border: 2px solid rgba(212, 163, 115, 0.3);
+      border-radius: 50%;
+      top: 22px;
+      left: 24px;
+      z-index: 1;
+      animation: pulseHalo 3s infinite ease-in-out;
+    }
+
+    @keyframes pulseHalo {
+      0%,100% { transform: scale(1); opacity: 0.5; }
+      50% { transform: scale(1.06); opacity: 0.8; }
+    }
+
+    /* Screens */
+    .screen {
+      display: none;
+      animation: fadeIn 0.6s ease;
+    }
+
+    .screen.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Intro */
+    .intro-box, .result-box {
+      text-align: center;
+      padding: 14px 10px;
+    }
+
+    .intro-heading {
+      font-family: 'Merriweather', serif;
+      font-size: 24px;
+      color: var(--ink);
+      margin-bottom: 16px;
+      font-weight: 400;
+    }
+
+    .intro-text {
+      font-size: 15px;
+      line-height: 1.9;
+      color: var(--muted);
+      margin-bottom: 22px;
+    }
+
+    .intro-text b {
+      color: var(--ink);
+    }
+
+    .name-box {
+      margin: 20px auto 18px;
+      max-width: 420px;
+    }
+
+    .name-box input {
+      width: 100%;
+      padding: 14px 18px;
+      border-radius: 1rem;
+      border: 1px solid rgba(212, 163, 115, 0.35);
+      font-size: 16px;
+      font-family: 'Lato', sans-serif;
+      text-align: center;
+      background: rgba(255,255,255,0.5);
+      backdrop-filter: blur(10px);
+      color: var(--ink);
+      outline: none;
+      transition: all 0.3s;
+      letter-spacing: 0.08em;
+    }
+
+    .name-box input:focus {
+      border-color: var(--sandalwood);
+      box-shadow: 0 0 0 3px rgba(212, 163, 115, 0.1);
+    }
+
+    .name-box input::placeholder {
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    /* Buttons */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 36px;
+      border: none;
+      border-radius: 1rem;
+      font-size: 14px;
+      font-family: 'Lato', sans-serif;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      cursor: pointer;
+      color: white;
+      background: linear-gradient(135deg, rgba(212,163,115,0.85), rgba(224,122,95,0.85));
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.25);
+      box-shadow: 0 8px 32px rgba(212,163,115,0.3), inset 0 1px 0 rgba(255,255,255,0.3);
+      transition: all 0.3s;
+    }
+
+    .btn-primary:hover {
+      transform: scale(1.03) translateY(-1px);
+      box-shadow: 0 12px 40px rgba(212,163,115,0.4);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+      padding: 14px 20px;
+      border: 1px solid rgba(212, 163, 115, 0.2);
+      border-radius: 1rem;
+      font-size: 14px;
+      font-family: 'Lato', sans-serif;
+      cursor: pointer;
+      color: var(--ink);
+      background: rgba(255,255,255,0.35);
+      backdrop-filter: blur(10px);
+      transition: all 0.3s;
+      text-align: left;
+      line-height: 1.6;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(212, 163, 115, 0.12);
+      border-color: var(--sandalwood);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 16px rgba(212, 163, 115, 0.12);
+    }
+
+    .btn-dark {
+      display: inline-block;
+      width: 100%;
+      padding: 16px 24px;
+      border: none;
+      border-radius: 0.75rem;
+      font-size: 13px;
+      font-family: 'Lato', sans-serif;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      cursor: pointer;
+      color: white;
+      background: var(--ink);
+      transition: all 0.3s;
+      max-width: 360px;
+    }
+
+    .btn-dark:hover {
+      background: #444;
+      transform: translateY(-1px);
+    }
+
+    /* Progress bar */
+    .progress-box {
+      width: 100%;
+      height: 4px;
+      background: rgba(212, 163, 115, 0.15);
+      border-radius: 999px;
+      overflow: hidden;
+      margin-bottom: 28px;
+    }
+
+    .progress {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(to right, var(--sandalwood), var(--saffron));
+      transition: width 0.5s ease;
+      border-radius: 999px;
+    }
+
+    /* Quiz Screen */
+    .set-wrap {
+      text-align: center;
+      margin-bottom: 12px;
+    }
+
+    .set-badge {
+      display: inline-block;
+      font-size: 11px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--sandalwood);
+      padding: 6px 16px;
+      border: 1px solid rgba(212, 163, 115, 0.25);
+      border-radius: 999px;
+      background: rgba(212, 163, 115, 0.06);
+      backdrop-filter: blur(8px);
+    }
+
+    .scenario {
+      text-align: center;
+      font-size: 13px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    .question {
+      text-align: center;
+      font-family: 'Merriweather', serif;
+      font-size: 18px;
+      line-height: 1.8;
+      color: var(--ink);
+      margin-bottom: 28px;
+    }
+
+    .question i {
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    /* =================== */
+    /* RESULT SCREEN       */
+    /* =================== */
+    .result-reveal {
+      animation: resultPop 0.9s ease;
+    }
+
+    @keyframes resultPop {
+      0% { transform: scale(0.95); opacity: 0; }
+      60% { transform: scale(1.01); opacity: 1; }
+      100% { transform: scale(1); }
+    }
+
+    /* Result Layout - 2 column where applicable */
+    .result-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin-bottom: 32px;
+    }
+
+    .result-left {
+      text-align: left;
+    }
+
+    .result-right {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .result-header-label {
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--sandalwood);
+      margin-bottom: 12px;
+    }
+
+    .result-title {
+      font-family: 'Merriweather', serif;
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 14px;
+      line-height: 1.3;
+    }
+
+    .result-description {
+      font-size: 15px;
+      line-height: 1.8;
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+
+    /* Sanskrit Quote Box - matching the image */
+    .shloka-box {
+      background: rgba(249, 246, 240, 0.7);
+      border-left: 4px solid var(--gold);
+      padding: 20px 24px;
+      border-radius: 0 12px 12px 0;
+      margin-bottom: 24px;
+    }
+
+    .shloka-sanskrit {
+      font-family: 'Merriweather', serif;
+      font-size: 17px;
+      line-height: 1.8;
+      color: var(--ink);
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .shloka-meaning {
+      font-size: 14px;
+      font-style: italic;
+      line-height: 1.7;
+      color: var(--muted);
+    }
+
+    /* Personal Guidance box */
+    .guidance-box {
+      background: rgba(249, 246, 240, 0.5);
+      padding: 20px 24px;
+      border-radius: 12px;
+      margin-bottom: 24px;
+    }
+
+    .guidance-label {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+
+    .guidance-label span {
+      color: var(--sandalwood);
+    }
+
+    .guidance-text {
+      font-size: 13px;
+      line-height: 1.7;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* Radar Chart Container */
+    .radar-container {
+      width: 100%;
+      max-width: 300px;
+      aspect-ratio: 1;
+      margin: 0 auto;
+    }
+
+    .radar-container canvas {
+      width: 100% !important;
+      height: 100% !important;
+    }
+
+    /* Return to Silence button area */
+    .return-btn-wrap {
+      text-align: center;
+      margin-top: 12px;
+    }
+
+    /* Acknowledged State Badge */
+    .acknowledged-state {
+      text-align: center;
+      margin-top: 32px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(212, 163, 115, 0.15);
+    }
+
+    .acknowledged-label {
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .acknowledged-title {
+      font-family: 'Merriweather', serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    /* Trait bars */
+    .trait-section {
+      margin-top: 28px;
+    }
+
+    .trait-section h3 {
+      font-family: 'Merriweather', serif;
+      font-size: 16px;
+      color: var(--ink);
+      margin-bottom: 16px;
+      font-weight: 400;
+    }
+
+    .trait-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 16px;
+      margin-bottom: 6px;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.4);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.3);
+      font-size: 14px;
+    }
+
+    .trait-name {
+      color: var(--ink);
+      font-weight: 400;
+    }
+
+    .trait-value {
+      color: var(--sandalwood);
+      font-weight: 600;
+      font-family: 'Merriweather', serif;
+    }
+
+    /* Certificate */
+    .certificate {
+      margin-top: 28px;
+      background: rgba(255,255,255,0.45);
+      backdrop-filter: blur(20px);
+      border: 2px solid rgba(212, 163, 115, 0.2);
+      border-radius: 1.5rem;
+      padding: 28px 24px;
+      text-align: center;
+    }
+
+    .certificate h2 {
+      font-family: 'Merriweather', serif;
+      font-size: 22px;
+      color: var(--ink);
+      margin-bottom: 10px;
+      font-weight: 400;
+    }
+
+    .certificate .cert-name {
+      font-family: 'Merriweather', serif;
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--ink);
+      margin: 12px 0;
+    }
+
+    .certificate .cert-state {
+      font-size: 16px;
+      color: var(--sandalwood);
+      margin-bottom: 12px;
+      letter-spacing: 0.1em;
+    }
+
+    .certificate .cert-text {
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--muted);
+    }
+
+    /* Action buttons at bottom */
+    .action-buttons {
+      display: flex;
+      gap: 12px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+
+    .action-buttons button {
+      flex: 1;
+      min-width: 140px;
+    }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 20px;
+      border: 1px solid rgba(212, 163, 115, 0.3);
+      border-radius: 0.75rem;
+      font-size: 13px;
+      font-family: 'Lato', sans-serif;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      cursor: pointer;
+      color: var(--ink);
+      background: rgba(255,255,255,0.3);
+      backdrop-filter: blur(10px);
+      transition: all 0.3s;
+    }
+
+    .btn-outline:hover {
+      background: rgba(212, 163, 115, 0.1);
+      border-color: var(--sandalwood);
+    }
+
+    .small {
+      margin-top: 18px;
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    /* Responsive */
+    @media (max-width: 700px) {
+      .container {
+        margin-top: 80px;
+        padding: 24px 20px;
+      }
+      .title h1 { font-size: 28px; }
+      .result-grid {
+        grid-template-columns: 1fr;
+      }
+      .result-title { font-size: 26px; }
+      .krishna-visual { width: 150px; height: 150px; }
+      .krishna-face { font-size: 65px; }
+      .flute { font-size: 28px; }
+      .peacock-crown { font-size: 26px; }
+      .halo { width: 105px; height: 105px; top: 20px; left: 21px;}
+      .question { font-size: 16px; }
+      .nav-bar { padding: 12px 16px; }
+      .nav-brand { font-size: 16px; }
+      .acknowledged-title { font-size: 22px; }
+      .action-buttons { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Celestial Background -->
+  <canvas id="celestial-canvas"></canvas>
+  <div id="bg-ekatva-logo">EKATVA</div>
+
+  <!-- Navigation -->
+  <nav class="nav-bar">
+    <a href="index.html" class="nav-brand">EKATVA</a>
+    <div class="nav-actions">
+      <button class="music-btn" onclick="toggleMusic()" id="musicBtn">🎵 Music OFF</button>
+    </div>
+  </nav>
+
+  <!-- Decorative Particles - PRESERVED ICONS -->
+  <div class="particle" style="left:4%; animation-duration: 12s;">🪶</div>
+  <div class="particle" style="left:11%; animation-duration: 15s;">🪷</div>
+  <div class="particle" style="left:19%; animation-duration: 11s;">🪶</div>
+  <div class="particle" style="left:27%; animation-duration: 16s;">🪷</div>
+  <div class="particle" style="left:36%; animation-duration: 13s;">🪶</div>
+  <div class="particle" style="left:44%; animation-duration: 17s;">🪷</div>
+  <div class="particle" style="left:53%; animation-duration: 12s;">🪶</div>
+  <div class="particle" style="left:62%; animation-duration: 14s;">🪷</div>
+  <div class="particle" style="left:71%; animation-duration: 11s;">🪶</div>
+  <div class="particle" style="left:80%; animation-duration: 18s;">🪷</div>
+  <div class="particle" style="left:89%; animation-duration: 13s;">🪶</div>
+  <div class="particle" style="left:96%; animation-duration: 15s;">🪷</div>
+
+  <div class="container">
+    <div class="title">
+      <div class="section-label">
+        <div class="line"></div>
+        <span>Soul Reflection</span>
+        <div class="line"></div>
+      </div>
+      <h1>Krishna's Mirror</h1>
+      <p>
+        A Bhagavad Gita-inspired inner reflection experience.<br>
+        Discover which emotion is quietly leading your heart today.
+      </p>
+    </div>
+
+    <!-- Krishna Visual - PRESERVED ICONS -->
+    <div class="krishna-visual" id="krishnaVisual">
+      <div class="halo"></div>
+      <div class="peacock-crown">🦚</div>
+      <div class="krishna-face" id="krishnaMood">🧘‍♂️</div>
+      <div class="flute" id="krishnaFlute">🪈</div>
+    </div>
+
+    <!-- Intro Screen -->
+    <div class="screen active" id="introScreen">
+      <div class="intro-box">
+        <div class="intro-heading">What is Krishna observing in your heart today?</div>
+        <div class="intro-text">
+          This is not a score-based game.<br><br>
+          You will go through <b>4 spiritual sets</b> with <b>7 case-based questions each</b>.<br><br>
+          At the end, Krishna's Mirror will reveal your dominant inner emotion and your soul archetype:<br><br>
+          <b>Angry 🔥 | Happy 🌼 | Sad 🌧️ | Calm 🕊️</b>
+        </div>
+
+        <div class="name-box">
+          <input type="text" id="playerName" placeholder="Enter your name for your spiritual reflection" maxlength="25">
+        </div>
+
+        <button class="btn-primary" onclick="startGame()">Begin the Journey →</button>
+        <div class="small">Inspired by the Bhagavad Gita ✨</div>
+      </div>
+    </div>
+
+    <!-- Quiz Screen -->
+    <div class="screen" id="quizScreen">
+      <div class="progress-box">
+        <div class="progress" id="progressBar"></div>
+      </div>
+
+      <div class="set-wrap">
+        <div class="set-badge" id="setBadge"></div>
+      </div>
+
+      <div class="scenario" id="scenarioText"></div>
+      <div class="question" id="questionText"></div>
+      <div class="options" id="optionsBox"></div>
+    </div>
+
+    <!-- Result Screen -->
+    <div class="screen" id="resultScreen">
+      <div class="result-box result-reveal">
+        <!-- Top Grid: Text + Radar Chart -->
+        <div class="result-grid">
+          <div class="result-left">
+            <div class="result-header-label">FINAL EVALUATION</div>
+            <div class="result-title" id="resultTitle">State of Equilibrium</div>
+            <div class="result-description" id="resultDescription"></div>
+
+            <!-- Sanskrit Quote -->
+            <div class="shloka-box">
+              <div class="shloka-sanskrit" id="shlokaText"></div>
+              <div class="shloka-meaning" id="shlokaMeaning"></div>
+            </div>
+
+            <!-- Personal Guidance -->
+            <div class="guidance-box">
+              <div class="guidance-label">Personal Guidance: <span id="guidanceHighlight"></span></div>
+              <div class="guidance-text" id="guidanceText"></div>
+            </div>
+          </div>
+
+          <div class="result-right">
+            <!-- Radar / Spider Chart -->
+            <div class="radar-container">
+              <canvas id="radarChart"></canvas>
+            </div>
+
+            <!-- Return to Silence Button -->
+            <div class="return-btn-wrap">
+              <button class="btn-dark" onclick="restartGame()">Return to Silence</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Acknowledged State -->
+        <div class="acknowledged-state">
+          <div class="acknowledged-label">Acknowledged State</div>
+          <div class="acknowledged-title" id="soulArchetype">Sattvic Soul</div>
+        </div>
+
+        <!-- Trait Breakdown -->
+        <div class="trait-section" id="traitSection">
+          <h3>Your Emotional Spectrum</h3>
+          <div id="traitList"></div>
+        </div>
+
+        <!-- Certificate -->
+        <div class="certificate" id="certificateBox">
+          <div class="section-label" style="margin-bottom: 12px;">
+            <div class="line"></div>
+            <span>Spiritual Certificate</span>
+            <div class="line"></div>
+          </div>
+          <h2>Reflection of the Self</h2>
+          <div class="cert-name" id="certName">Seeker</div>
+          <div class="cert-state" id="certState">Inner State: Shanti State 🕊️</div>
+          <div class="cert-text" id="certText">
+            Awarded for completing Krishna's Mirror and receiving a reflection of the present emotional state.
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+          <button class="btn-outline" onclick="shareResult()">📜 Share My Result</button>
+          <button class="btn-outline" onclick="restartGame()">↻ Play Again</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ========================================
+    // QUESTIONS (preserved from original)
+    // ========================================
+    const questions = [
+      // SET 1
+      {
+        set: "Set 1 of 4 • Anger & Reaction",
+        scenario: "A friend insults you in front of others.",
+        question: "What do you most likely do?",
+        options: [
+          { text: "Reply sharply and instantly.", tags: { angry: 3 } },
+          { text: "Laugh it off and move ahead.", tags: { happy: 2, calm: 1 } },
+          { text: "Stay quiet but feel hurt for long.", tags: { sad: 3 } },
+          { text: "Pause and choose peace before speaking.", tags: { calm: 3 } }
+        ]
+      },
+      {
+        set: "Set 1 of 4 • Anger & Reaction",
+        scenario: "Someone blames you for something you didn't fully do.",
+        question: "Your first inner reaction is:",
+        options: [
+          { text: "I get heated and want to argue.", tags: { angry: 3 } },
+          { text: "I stay light and explain without stress.", tags: { happy: 2, calm: 1 } },
+          { text: "I feel upset and unfairly treated.", tags: { sad: 3 } },
+          { text: "I calmly tell the truth.", tags: { calm: 3 } }
+        ]
+      },
+      {
+        set: "Set 1 of 4 • Anger & Reaction",
+        scenario: "A family member keeps irritating you over small things.",
+        question: "What happens inside you?",
+        options: [
+          { text: "I lose patience quickly.", tags: { angry: 3 } },
+          { text: "I joke and avoid making it heavy.", tags: { happy: 3 } },
+          { text: "I feel emotionally drained by it.", tags: { sad: 3 } },
+          { text: "I stay patient and let it pass.", tags: { calm: 3 } }
+        ]
+      },
+      {
+        set: "Set 1 of 4 • Anger & Reaction",
+        scenario: "You are waiting in a long line while already stressed.",
+        question: "How does your mind react?",
+        options: [
+          { text: "I get irritated very fast.", tags: { angry: 3 } },
+          { text: "I distract myself and stay cheerful.", tags: { happy: 3 } },
+          { text: "I feel mentally exhausted by everything.", tags: { sad: 3 } },
+          { text: "I breathe and accept the moment.", tags: { calm: 3 } }
+        ]
+      },
+      {
+        set: "Set 1 of 4 • Anger & Reaction",
+        scenario: "Someone cuts you off while you are speaking.",
+        question: "What feels most natural?",
+        options: [
+          { text: "I feel disrespected and react strongly.", tags: { angry: 3 } },
+          { text: "I smile and continue later.", tags: { happy: 3 } },
+          { text: "I feel small and ignored.", tags: { sad: 3 } },
+          { text: "I wait and speak when it is my turn.", tags: { calm: 3 } }
+        ]
+      },
+      {
+        set: "Set 1 of 4 • Anger & Reaction",
+        scenario: "Someone online says something rude to you.",
+        question: "What do you usually do?",
+        options: [
+          { text: "Reply immediately and harshly.", tags: { angry: 3 } },
+          { text: "Brush it off and move on happily.", tags: { happy: 3 } },
+          { text: "Keep thinking about it and feel bad.", tags: { sad: 3 } },
+          { text: "Ignore it and protect my peace.", tags: { calm: 3 } }
+        ]
+      },
+      {
+        set: "Set 1 of 4 • Anger & Reaction",
+        scenario: "Your plans get ruined suddenly.",
+        question: "What dominates first?",
+        options: [
+          { text: "Frustration and anger.", tags: { angry: 3 } },
+          { text: "I quickly make a fun alternative.", tags: { happy: 3 } },
+          { text: "I feel deeply disappointed.", tags: { sad: 3 } },
+          { text: "I accept and adjust peacefully.", tags: { calm: 3 } }
+        ]
+      },
+
+      // SET 2
+      {
+        set: "Set 2 of 4 • Sadness & Hurt",
+        scenario: "You are left out of a group plan.",
+        question: "What affects you most?",
+        options: [
+          { text: "I feel angry and offended.", tags: { angry: 3 } },
+          { text: "I try to stay positive and not take it personally.", tags: { happy: 3 } },
+          { text: "I feel unwanted and hurt.", tags: { sad: 3 } },
+          { text: "I accept that not every place is for me.", tags: { calm: 3 } }
+        ]
+      },
+      {
+        set: "Set 2 of 4 • Sadness & Hurt",
+        scenario: "A person you trusted disappoints you.",
+        question: "What is strongest inside you?",
+        options: [
+          { text: "I feel anger and betrayal.", tags: { angry: 3 } },
+          { text: "I try to forgive and keep my heart light.", tags: { happy: 2, calm: 1 } },
+          { text: "I feel deeply wounded and silent.", tags: { sad: 3 } },
+          { text: "I accept the pain and move with maturity.", tags: { calm: 3 } }
+        ]
+      },
+      {
+        set: "Set 2 of 4 • Sadness & Hurt",
+        scenario: "You fail after working very hard.",
+        question: "What thought comes first?",
+        options: [
+          { text: "Why does this always happen to me?", tags: { angry: 2, sad: 1 } },
+          { text: "It hurts, but I'll rise again.", tags: { happy: 3 } },
+          { text: "Maybe I am not good enough.", tags: { sad: 3 } },
+          { text: "This is a lesson, not the end.", tags: { calm: 3 } }
+        ]
+      },
+      {
+        set: "Set 2 of 4 • Sadness & Hurt",
+        scenario: "At night, your mind becomes heavy.",
+        question: "What usually fills your thoughts?",
+        options: [
+          { text: "Old unfair things that still bother me.", tags: { angry: 3 } },
+          { text: "Good memories or hopeful thoughts.", tags: { happy: 3 } },
+          { text: "Loneliness, regret, or emotional pain.", tags: { sad: 3 } },
+          { text: "Reflection, stillness, and acceptance.", tags: { calm: 3 } }
+        ]
+      },
+      {
+        set: "Set 2 of 4 • Sadness & Hurt",
+        scenario: "You feel like nobody fully understands you.",
+        question: "How do you react?",
+        options: [
+          { text: "I become frustrated with people.", tags: { angry: 3 } },
+          { text: "I still try to stay warm and open.", tags: { happy: 3 } },
+          { text: "I feel emotionally distant and hurt.", tags: { sad: 3 } },
+          { text: "I stay centered and understand myself first.", tags: { calm: 3 } }
+        ]
+      },
+      {
+        set: "Set 2 of 4 • Sadness & Hurt",
+        scenario: "Someone forgets something important to you.",
+        question: "What feels truest?",
+        options: [
+          { text: "I get annoyed and upset.", tags: { angry: 3 } },
+          { text: "I smile and let it go lightly.", tags: { happy: 3 } },
+          { text: "I feel like I don't matter enough.", tags: { sad: 3 } },
+          { text: "I communicate it calmly without bitterness.", tags: { calm: 3 } }
+        ]
+      },
+      {
+        set: "Set 2 of 4 • Sadness & Hurt",
+        scenario: "You see others enjoying life while you feel low.",
+        question: "What happens in your heart?",
+        options: [
+          { text: "I feel irritated and resentful.", tags: { angry: 3 } },
+          { text: "I feel happy for them and hopeful for myself.", tags: { happy: 3 } },
+          { text: "I feel more alone and heavy.", tags: { sad: 3 } },
+          { text: "I remind myself every phase passes.", tags: { calm: 3 } }
+        ]
+      },
+
+      // SET 3
+      {
+        set: "Set 3 of 4 • Joy & Gratitude",
+        scenario: "You achieve something you worked hard for.",
+        question: "What is your natural response?",
+        options: [
+          { text: "I become intense and want even more immediately.", tags: { angry: 1, happy: 1 } },
+          { text: "I feel joyful and grateful.", tags: { happy: 3 } },
+          { text: "I still feel empty despite success.", tags: { sad: 3 } },
+          { text: "I stay balanced and thankful without attachment.", tags: { calm: 3 } }
+        ]
+      },
+      {
+        set: "Set 3 of 4 • Joy & Gratitude",
+        scenario: "You spend a peaceful evening with people you love.",
+        question: "What do you feel most?",
+        options: [
+          { text: "I worry it won't stay this good for long.", tags: { angry: 1, sad: 1 } },
+          { text: "Warmth, joy, and fullness.", tags: { happy: 3 } },
+          { text: "A strange sadness even in good moments.", tags: { sad: 3 } },
+          { text: "Deep peace and contentment.", tags: { calm: 3 } }
+        ]
+      },
+      {
+        set: "Set 3 of 4 • Joy & Gratitude",
+        scenario: "Someone appreciates you genuinely.",
+        question: "How do you receive it?",
+        options: [
+          { text: "I act tough, but I don't know how to take it.", tags: { angry: 2 } },
+          { text: "I smile and feel truly uplifted.", tags: { happy: 3 } },
+          { text: "I feel emotional and fragile inside.", tags: { sad: 3 } },
+          { text: "I accept it with humility and grace.", tags: { calm: 3 } }
+        ]
+      },
+      {
+        set: "Set 3 of 4 • Joy & Gratitude",
+        scenario: "You get unexpected good news.",
+        question: "What happens first?",
+        options: [
+          { text: "I become hyper and reactive.", tags: { angry: 1, happy: 2 } },
+          { text: "I feel genuinely excited and bright.", tags: { happy: 3 } },
+          { text: "I wonder if something bad will follow.", tags: { sad: 3 } },
+          { text: "I feel grateful and quietly joyful.", tags: { calm: 2, happy: 1 } }
+        ]
+      },
+      {
+        set: "Set 3 of 4 • Joy & Gratitude",
+        scenario: "You help someone and they are truly thankful.",
+        question: "How does it affect you?",
+        options: [
+          { text: "I feel proud and want recognition too.", tags: { angry: 1, happy: 1 } },
+          { text: "It fills me with happiness.", tags: { happy: 3 } },
+          { text: "I still feel emotionally low inside.", tags: { sad: 3 } },
+          { text: "It brings me quiet inner peace.", tags: { calm: 3 } }
+        ]
+      },
+      {
+        set: "Set 3 of 4 • Joy & Gratitude",
+        scenario: "You remember one of your happiest memories.",
+        question: "What do you feel most strongly?",
+        options: [
+          { text: "Frustration that life is not always like that.", tags: { angry: 3 } },
+          { text: "Lightness and gratitude.", tags: { happy: 3 } },
+          { text: "Pain because it is gone now.", tags: { sad: 3 } },
+          { text: "Peace in having experienced it.", tags: { calm: 3 } }
+        ]
+      },
+      {
+        set: "Set 3 of 4 • Joy & Gratitude",
+        scenario: "You wake up to a beautiful, calm morning.",
+        question: "What matches your state best?",
+        options: [
+          { text: "I'm already tense about the day ahead.", tags: { angry: 3 } },
+          { text: "I feel cheerful and fresh.", tags: { happy: 3 } },
+          { text: "I still carry emotional heaviness.", tags: { sad: 3 } },
+          { text: "I feel quietly at peace.", tags: { calm: 3 } }
+        ]
+      },
+
+      // SET 4
+      {
+        set: "Set 4 of 4 • Calmness & Spiritual Balance",
+        scenario: "You are under a lot of pressure.",
+        question: "What helps you most naturally?",
+        options: [
+          { text: "I react sharply under pressure.", tags: { angry: 3 } },
+          { text: "I try to keep things positive and lively.", tags: { happy: 3 } },
+          { text: "I feel emotionally weighed down.", tags: { sad: 3 } },
+          { text: "I breathe, slow down, and regain balance.", tags: { calm: 3 } }
+        ]
+      },
+      {
+        set: "Set 4 of 4 • Calmness & Spiritual Balance",
+        scenario: "Someone disagrees with your deeply held opinion.",
+        question: "What is your first instinct?",
+        options: [
+          { text: "Defend myself strongly.", tags: { angry: 3 } },
+          { text: "Keep it light and not too serious.", tags: { happy: 3 } },
+          { text: "Feel personally hurt by it.", tags: { sad: 3 } },
+          { text: "Listen first and respond with calm.", tags: { calm: 3 } }
+        ]
+      },
+      {
+        set: "Set 4 of 4 • Calmness & Spiritual Balance",
+        scenario: "You sit alone in silence for a few minutes.",
+        question: "What do you usually experience?",
+        options: [
+          { text: "Restlessness and irritation.", tags: { angry: 3 } },
+          { text: "A pleasant, light feeling.", tags: { happy: 3 } },
+          { text: "Heavy thoughts and emotions.", tags: { sad: 3 } },
+          { text: "A sense of stillness and clarity.", tags: { calm: 3 } }
+        ]
+      },
+      {
+        set: "Set 4 of 4 • Calmness & Spiritual Balance",
+        scenario: "You have to forgive someone who hurt you.",
+        question: "What feels most true right now?",
+        options: [
+          { text: "I'm still too angry to forgive.", tags: { angry: 3 } },
+          { text: "I try to forgive and keep my heart bright.", tags: { happy: 3 } },
+          { text: "I want to forgive, but the pain stays.", tags: { sad: 3 } },
+          { text: "Forgiveness feels like inner freedom.", tags: { calm: 3 } }
+        ]
+      },
+      {
+        set: "Set 4 of 4 • Calmness & Spiritual Balance",
+        scenario: "Your day becomes unexpectedly chaotic.",
+        question: "How do you move through it?",
+        options: [
+          { text: "With frustration and irritation.", tags: { angry: 3 } },
+          { text: "By trying to keep energy high and positive.", tags: { happy: 3 } },
+          { text: "By feeling emotionally overwhelmed.", tags: { sad: 3 } },
+          { text: "By staying steady and centered.", tags: { calm: 3 } }
+        ]
+      },
+      {
+        set: "Set 4 of 4 • Calmness & Spiritual Balance",
+        scenario: "You think about what kind of person you want to become.",
+        question: "Which quality attracts you most?",
+        options: [
+          { text: "Fearless and powerful.", tags: { angry: 2 } },
+          { text: "Bright, loving, and joyful.", tags: { happy: 3 } },
+          { text: "Deeply emotional and understood.", tags: { sad: 3 } },
+          { text: "Peaceful, balanced, and wise.", tags: { calm: 3 } }
+        ]
+      },
+      {
+        set: "Set 4 of 4 • Calmness & Spiritual Balance",
+        scenario: "You imagine Krishna standing before you.",
+        question: "What do you think He would ask you to develop most right now?",
+        options: [
+          { text: "Control over my reactions.", tags: { angry: 3 } },
+          { text: "Trust in joy and gratitude.", tags: { happy: 3 } },
+          { text: "Healing from pain and sorrow.", tags: { sad: 3 } },
+          { text: "Inner stillness and self-mastery.", tags: { calm: 3 } }
+        ]
+      }
+    ];
+
+    // ========================================
+    // PROFILES with expanded personality data
+    // ========================================
+    const profiles = {
+      angry: {
+        title: "State of Inner Fire",
+        archetype: "Rajasic Warrior",
+        quote: "Anger clouds wisdom, and clouded wisdom disturbs action.",
+        text: "Your inner state currently carries heat, frustration, or intensity. This does not mean you are weak — it means your energy is powerful and active. According to the Bhagavad Gita, this fire must not be suppressed blindly, but transformed into discipline, courage, and right action.",
+        krishna: "Krishna stands before you with firmness and compassion, reminding you: your fire is not your enemy — uncontrolled fire is.",
+        emoji: "🔥",
+        shloka: "क्रोधाद्भवति सम्मोहः सम्मोहात्स्मृतिविभ्रमः।",
+        meaning: "From anger comes delusion, and from delusion, confusion of memory. Krishna reminds you to master reaction before it masters you.",
+        guidance: "Your journey is now about channeling your inner fire into righteous action. Let discipline be your shield, not rage.",
+        guidanceHighlight: "Transform fire into focused power.",
+        radarLabels: ["Intensity", "Courage", "Perspective", "Resilience", "Discipline", "Passion"],
+        radarValues: [90, 75, 35, 50, 30, 85],
+        personalityTraits: [
+          "You respond to injustice with immediacy and passion",
+          "Your emotions are close to the surface and powerfully felt",
+          "You value fairness and cannot tolerate dishonesty",
+          "Your challenge is learning to pause before reacting",
+          "When channeled, your fire becomes unstoppable courage"
+        ]
+      },
+      happy: {
+        title: "State of Radiance",
+        archetype: "Sattvic Bloom",
+        quote: "Joy shines brightest when it is not chained to outer events.",
+        text: "Your heart currently carries brightness, hope, and emotional warmth. You may naturally uplift others and bring life into spaces. Krishna would remind you to enjoy happiness deeply — but not become dependent on it for your identity or peace.",
+        krishna: "Krishna smiles gently before you, reminding you to let joy become gratitude, not attachment.",
+        emoji: "😊",
+        shloka: "युक्तः कर्मफलं त्यक्त्वा शान्तिमाप्नोति नैष्ठिकीम्।",
+        meaning: "The one who acts without clinging to outcomes finds lasting peace. Krishna teaches that true joy grows deeper when free from attachment.",
+        guidance: "Your journey is now about deepening your joy into wisdom. Let your light illuminate others without burning yourself out.",
+        guidanceHighlight: "Let gratitude anchor your brightness.",
+        radarLabels: ["Optimism", "Warmth", "Perspective", "Resilience", "Gratitude", "Connection"],
+        radarValues: [88, 85, 55, 60, 80, 90],
+        personalityTraits: [
+          "You naturally bring warmth and positivity to those around you",
+          "Your heart seeks beauty and meaning in everyday moments",
+          "You recover from setbacks with hope and forward energy",
+          "Your challenge is staying grounded when joy fluctuates",
+          "When deepened, your happiness becomes unshakable gratitude"
+        ]
+      },
+      sad: {
+        title: "State of Deep Waters",
+        archetype: "Tamasic Healer",
+        quote: "Even Arjuna began in sorrow before receiving clarity.",
+        text: "Your mind may currently be carrying hurt, emotional heaviness, or quiet pain. In the Gita, sorrow is not shown as failure — it is often the beginning of self-understanding. This phase may be asking you to heal, reflect, and reconnect with your inner strength.",
+        krishna: "Krishna sits beside you patiently, reminding you that pain can become wisdom when faced honestly.",
+        emoji: "😔",
+        shloka: "अशोच्यानन्वशोचस्त्वं प्रज्ञावादांश्च भाषसे।",
+        meaning: "Krishna gently reminds Arjuna not to drown in grief, but to rise through understanding. Sadness may be your doorway to deeper truth.",
+        guidance: "Your journey is now about transforming pain into understanding. Allow the weight to become wisdom. You are not broken — you are becoming.",
+        guidanceHighlight: "Sorrow is the seed of wisdom.",
+        radarLabels: ["Sensitivity", "Depth", "Perspective", "Resilience", "Empathy", "Reflection"],
+        radarValues: [90, 85, 40, 35, 88, 75],
+        personalityTraits: [
+          "You feel the world deeply and carry others' emotions alongside your own",
+          "Your sensitivity is both your greatest gift and your greatest test",
+          "You experience beauty and pain with equal intensity",
+          "Your challenge is not letting heavy emotions define your entire reality",
+          "When healed, your depth becomes extraordinary compassion and understanding"
+        ]
+      },
+      calm: {
+        title: "State of Equilibrium",
+        archetype: "Sattvic Soul",
+        quote: "The steady mind remains peaceful amidst both gain and loss.",
+        text: "Your inner state is closest to balance, patience, and centered awareness. This is the state the Bhagavad Gita constantly points toward — not escaping life, but acting in it without losing inner stability. Calmness is not passivity; it is strength under control.",
+        krishna: "Krishna appears serene and radiant before you, as if reminding you that peace is one of the highest forms of power.",
+        emoji: "🧘‍♂️",
+        shloka: "तस्मादसक्तः सततं कार्यं कर्म समाचर।",
+        meaning: "Therefore, without being attached to the fruits of activities, one should act as a matter of duty.",
+        guidance: "Your journey is now about teaching others through your silence. Stay rooted in your practice.",
+        guidanceHighlight: "Peace is power in its highest form.",
+        radarLabels: ["Stability", "Calm", "Perspective", "Resilience", "Discipline", "Connection"],
+        radarValues: [85, 92, 78, 80, 75, 70],
+        personalityTraits: [
+          "You act without being enslaved by the results of your actions",
+          "Your presence naturally calms others and creates safe spaces",
+          "You approach conflict with patience and measured wisdom",
+          "Your challenge is not mistaking detachment for indifference",
+          "When deepened, your calm becomes a beacon for others seeking peace"
+        ]
+      }
+    };
+
+    let currentQuestion = 0;
+    let player = "Seeker";
+    let finalEmotion = "calm";
+
+    let scores = {
+      angry: 0,
+      happy: 0,
+      sad: 0,
+      calm: 0
+    };
+
+    // ========================================
+    // GAME LOGIC
+    // ========================================
+    function startGame() {
+      const nameInput = document.getElementById("playerName").value.trim();
+      player = nameInput ? nameInput : "Seeker";
+
+      document.getElementById("introScreen").classList.remove("active");
+      document.getElementById("quizScreen").classList.add("active");
+      loadQuestion();
+    }
+
+    function loadQuestion() {
+      let q = questions[currentQuestion];
+
+      document.getElementById("setBadge").innerText = q.set;
+      document.getElementById("scenarioText").innerText = "Question " + (currentQuestion + 1) + " of " + questions.length;
+      document.getElementById("questionText").innerHTML =
+        "<b>" + q.scenario + "</b><br><br><i>" + q.question + "</i>";
+
+      let optionsHTML = "";
+      q.options.forEach(option => {
+        optionsHTML += `<button class="btn-secondary" onclick='selectOption(${JSON.stringify(option.tags)})'>${option.text}</button>`;
+      });
+
+      document.getElementById("optionsBox").innerHTML = optionsHTML;
+
+      let progress = (currentQuestion / questions.length) * 100;
+      document.getElementById("progressBar").style.width = progress + "%";
+    }
+
+    function selectOption(tags) {
+      for (let key in tags) {
+        scores[key] += tags[key];
+      }
+
+      currentQuestion++;
+
+      if (currentQuestion < questions.length) {
+        loadQuestion();
+      } else {
+        showResult();
+      }
+    }
+
+    function showResult() {
+      document.getElementById("quizScreen").classList.remove("active");
+      document.getElementById("resultScreen").classList.add("active");
+      document.getElementById("progressBar").style.width = "100%";
+
+      let topEmotion = "calm";
+      let maxScore = -1;
+
+      for (let emotion in scores) {
+        if (scores[emotion] > maxScore) {
+          maxScore = scores[emotion];
+          topEmotion = emotion;
+        }
+      }
+
+      finalEmotion = topEmotion;
+      let result = profiles[topEmotion];
+
+      // Update result elements
+      document.getElementById("resultTitle").innerText = result.title;
+      document.getElementById("resultDescription").innerHTML =
+        `<strong>${player}</strong>, your reflections suggest ${topEmotion === 'calm' ? 'a rare balance' : topEmotion === 'happy' ? 'a radiant warmth' : topEmotion === 'sad' ? 'a deep sensitivity' : 'a powerful intensity'}. ${result.text.split('.').slice(0,2).join('.')}.`;
+
+      document.getElementById("shlokaText").innerText = result.shloka;
+      document.getElementById("shlokaMeaning").innerText = result.meaning;
+
+      document.getElementById("guidanceHighlight").innerText = result.guidanceHighlight;
+      document.getElementById("guidanceText").innerText = result.guidance;
+
+      document.getElementById("soulArchetype").innerText = result.archetype;
+      document.getElementById("krishnaMood").innerText = result.emoji;
+
+      // Trait breakdown
+      let sortedTraits = Object.entries(scores).sort((a, b) => b[1] - a[1]);
+      let traitHTML = "";
+      sortedTraits.forEach(item => {
+        traitHTML += `<div class="trait-item"><span class="trait-name">${capitalize(item[0])}</span><span class="trait-value">${item[1]}</span></div>`;
+      });
+      document.getElementById("traitList").innerHTML = traitHTML;
+
+      // Certificate
+      document.getElementById("certName").innerText = player;
+      document.getElementById("certState").innerText = "Inner State: " + result.title + " " + result.emoji;
+      document.getElementById("certText").innerText =
+        "Awarded to " + player + " for completing Krishna's Mirror and receiving a spiritual reflection of the present emotional state through Bhagavad Gita-inspired self-inquiry. Your soul archetype: " + result.archetype + ".";
+
+      // Draw radar chart
+      setTimeout(() => drawRadarChart(result), 300);
+    }
+
+    // ========================================
+    // RADAR / SPIDER CHART (Canvas-based)
+    // ========================================
+    function drawRadarChart(profile) {
+      const canvas = document.getElementById('radarChart');
+      const ctx = canvas.getContext('2d');
+      const dpr = window.devicePixelRatio || 1;
+
+      // Set canvas size
+      const containerWidth = canvas.parentElement.offsetWidth;
+      const size = Math.min(containerWidth, 300);
+      canvas.width = size * dpr;
+      canvas.height = size * dpr;
+      canvas.style.width = size + 'px';
+      canvas.style.height = size + 'px';
+      ctx.scale(dpr, dpr);
+
+      const centerX = size / 2;
+      const centerY = size / 2;
+      const maxRadius = size * 0.38;
+      const labels = profile.radarLabels;
+      const values = profile.radarValues;
+      const sides = labels.length;
+      const angleStep = (Math.PI * 2) / sides;
+      const startAngle = -Math.PI / 2;
+
+      ctx.clearRect(0, 0, size, size);
+
+      // Draw grid lines (5 levels)
+      for (let level = 1; level <= 5; level++) {
+        const r = (maxRadius / 5) * level;
+        ctx.beginPath();
+        for (let i = 0; i <= sides; i++) {
+          const angle = startAngle + i * angleStep;
+          const x = centerX + r * Math.cos(angle);
+          const y = centerY + r * Math.sin(angle);
+          if (i === 0) ctx.moveTo(x, y);
+          else ctx.lineTo(x, y);
+        }
+        ctx.closePath();
+        ctx.strokeStyle = 'rgba(44, 44, 44, 0.1)';
+        ctx.lineWidth = 0.8;
+        ctx.stroke();
+      }
+
+      // Draw axis lines
+      for (let i = 0; i < sides; i++) {
+        const angle = startAngle + i * angleStep;
+        ctx.beginPath();
+        ctx.moveTo(centerX, centerY);
+        ctx.lineTo(centerX + maxRadius * Math.cos(angle), centerY + maxRadius * Math.sin(angle));
+        ctx.strokeStyle = 'rgba(44, 44, 44, 0.08)';
+        ctx.lineWidth = 0.8;
+        ctx.stroke();
+      }
+
+      // Draw data polygon
+      ctx.beginPath();
+      for (let i = 0; i <= sides; i++) {
+        const idx = i % sides;
+        const angle = startAngle + idx * angleStep;
+        const r = (values[idx] / 100) * maxRadius;
+        const x = centerX + r * Math.cos(angle);
+        const y = centerY + r * Math.sin(angle);
+        if (i === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      }
+      ctx.closePath();
+      ctx.fillStyle = 'rgba(212, 163, 115, 0.15)';
+      ctx.fill();
+      ctx.strokeStyle = 'rgba(212, 163, 115, 0.6)';
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+
+      // Draw data points
+      for (let i = 0; i < sides; i++) {
+        const angle = startAngle + i * angleStep;
+        const r = (values[i] / 100) * maxRadius;
+        const x = centerX + r * Math.cos(angle);
+        const y = centerY + r * Math.sin(angle);
+
+        ctx.beginPath();
+        ctx.arc(x, y, 3.5, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(44, 44, 44, 0.7)';
+        ctx.fill();
+      }
+
+      // Draw labels
+      ctx.font = '11px Lato, sans-serif';
+      ctx.fillStyle = 'rgba(44, 44, 44, 0.7)';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+
+      for (let i = 0; i < sides; i++) {
+        const angle = startAngle + i * angleStep;
+        const labelR = maxRadius + 22;
+        const x = centerX + labelR * Math.cos(angle);
+        const y = centerY + labelR * Math.sin(angle);
+        ctx.fillText(labels[i], x, y);
+      }
+    }
+
+    function restartGame() {
+      currentQuestion = 0;
+      scores = { angry: 0, happy: 0, sad: 0, calm: 0 };
+
+      document.getElementById("resultScreen").classList.remove("active");
+      document.getElementById("introScreen").classList.add("active");
+      document.getElementById("krishnaMood").innerText = "🧘‍♂️";
+      document.getElementById("progressBar").style.width = "0%";
+    }
+
+    function capitalize(word) {
+      return word.charAt(0).toUpperCase() + word.slice(1);
+    }
+
+    function shareResult() {
+      const resultTitle = profiles[finalEmotion].title;
+      const archetype = profiles[finalEmotion].archetype;
+      const text =
+`${player} completed Krishna's Mirror 🌼
+Result: ${resultTitle}
+Soul Archetype: ${archetype}
+
+A Bhagavad Gita inspired emotional reflection game.
+What would YOUR inner state be?`;
+
+      if (navigator.share) {
+        navigator.share({ title: "Krishna's Mirror Result", text: text });
+      } else {
+        navigator.clipboard.writeText(text);
+        alert("Your result has been copied to clipboard! You can now paste and share it.");
+      }
+    }
+
+    // ========================================
+    // MUSIC (Web Audio soft ambient)
+    // ========================================
+    let audioContext = null;
+    let musicOn = false;
+    let oscillator1, oscillator2, gainNode;
+
+    function toggleMusic() {
+      const btn = document.getElementById("musicBtn");
+
+      if (!musicOn) {
+        if (!audioContext) {
+          audioContext = new (window.AudioContext || window.webkitAudioContext)();
+
+          oscillator1 = audioContext.createOscillator();
+          oscillator2 = audioContext.createOscillator();
+          gainNode = audioContext.createGain();
+
+          oscillator1.type = "sine";
+          oscillator2.type = "triangle";
+
+          oscillator1.frequency.value = 261.63; // C
+          oscillator2.frequency.value = 392.00; // G
+
+          gainNode.gain.value = 0.012;
+
+          oscillator1.connect(gainNode);
+          oscillator2.connect(gainNode);
+          gainNode.connect(audioContext.destination);
+
+          oscillator1.start();
+          oscillator2.start();
+
+          setInterval(() => {
+            if (musicOn && oscillator1 && oscillator2) {
+              const notes1 = [261.63, 293.66, 329.63, 349.23];
+              const notes2 = [392.00, 440.00, 493.88, 523.25];
+              oscillator1.frequency.setValueAtTime(notes1[Math.floor(Math.random()*notes1.length)], audioContext.currentTime);
+              oscillator2.frequency.setValueAtTime(notes2[Math.floor(Math.random()*notes2.length)], audioContext.currentTime);
+            }
+          }, 2400);
+        } else {
+          audioContext.resume();
+        }
+
+        musicOn = true;
+        btn.innerText = "🎵 Music ON";
+      } else {
+        audioContext.suspend();
+        musicOn = false;
+        btn.innerText = "🎵 Music OFF";
+      }
+    }
+
+    // ========================================
+    // CELESTIAL BACKGROUND (matching Ekatva)
+    // ========================================
+    (function() {
+      const canvas = document.getElementById('celestial-canvas');
+      const ctx = canvas.getContext('2d', { alpha: true });
+      let W, H;
+      let time = 0;
+
+      function resize() {
+        W = canvas.width = window.innerWidth;
+        H = canvas.height = window.innerHeight;
+      }
+      resize();
+      window.addEventListener('resize', resize);
+
+      // Stars
+      const STAR_COUNT = 80;
+      const stars = [];
+      for (let i = 0; i < STAR_COUNT; i++) {
+        stars.push({
+          x: Math.random() * 3000 - 500,
+          y: Math.random() * 3000 - 500,
+          size: Math.random() * 2.5 + 0.5,
+          twinkleSpeed: Math.random() * 0.02 + 0.005,
+          twinkleOffset: Math.random() * Math.PI * 2,
+          color: ['#D4A373', '#C49BBB', '#7B9EA8', '#D4AF37', '#E07A5F'][Math.floor(Math.random() * 5)],
+          parallax: Math.random() * 0.04 + 0.01,
+        });
+      }
+
+      function drawFrame() {
+        time += 0.016;
+        ctx.clearRect(0, 0, W, H);
+
+        // Draw subtle nebula
+        const nebulaColors = ['rgba(212,163,115,0.04)', 'rgba(224,122,95,0.03)', 'rgba(196,155,187,0.035)'];
+        for (let i = 0; i < 3; i++) {
+          const x = W * (0.2 + i * 0.3) + Math.sin(time * 0.1 + i) * 30;
+          const y = H * (0.3 + i * 0.15) + Math.cos(time * 0.08 + i) * 20;
+          const r = Math.max(W, H) * 0.3;
+          const grad = ctx.createRadialGradient(x, y, 0, x, y, r);
+          grad.addColorStop(0, nebulaColors[i]);
+          grad.addColorStop(1, 'transparent');
+          ctx.fillStyle = grad;
+          ctx.fillRect(0, 0, W, H);
+        }
+
+        // Draw stars
+        for (const star of stars) {
+          const alpha = 0.3 + 0.3 * Math.sin(time * star.twinkleSpeed * 60 + star.twinkleOffset);
+          const sx = ((star.x) % (W + 200)) - 100;
+          const sy = ((star.y) % (H + 200)) - 100;
+
+          ctx.beginPath();
+          ctx.arc(sx, sy, star.size, 0, Math.PI * 2);
+          ctx.fillStyle = star.color;
+          ctx.globalAlpha = alpha;
+          ctx.fill();
+        }
+
+        ctx.globalAlpha = 1;
+        requestAnimationFrame(drawFrame);
+      }
+
+      drawFrame();
+    })();
+  </script>
+</body>
+</html>
